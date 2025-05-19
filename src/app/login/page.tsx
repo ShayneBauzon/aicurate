@@ -25,7 +25,7 @@ export default function LoginPage() {
     setIsLoading(true);
     // Simulate API call / authentication
     await new Promise(resolve => setTimeout(resolve, 1500)); 
-    router.push('/');
+    router.push('/main'); // Redirect to the new main page
     // setIsLoading(false); // Not strictly needed due to navigation
   };
 

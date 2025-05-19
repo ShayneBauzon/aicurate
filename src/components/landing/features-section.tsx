@@ -1,36 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Zap, Scale, CalendarClock, ShieldCheck, Puzzle, Smile } from 'lucide-react';
+import { Cpu, MessageSquareText, ThumbsUp } from 'lucide-react'; // Updated icons
 
 const features = [
   {
-    icon: <Zap className="w-10 h-10 text-primary mb-4" />,
-    title: 'Real-time Detection',
-    description: 'Instantly identifies problematic content as you browse, without interrupting your flow.',
+    icon: <Cpu className="w-10 h-10 text-primary mb-4" />,
+    title: 'Real-Time AI Detection',
+    description: 'One of VerifAI’s core features is an integrated AI detector that identifies outdated, biased, or false information in real time. It precisely highlights specific words or phrases, flagging them as false or misleading.',
   },
   {
-    icon: <Scale className="w-10 h-10 text-primary mb-4" />,
-    title: 'Bias Identification',
-    description: 'Flags potentially biased language or one-sided perspectives in articles and posts.',
+    icon: <MessageSquareText className="w-10 h-10 text-primary mb-4" />,
+    title: 'In-Page AI Explanation',
+    description: 'A unique feature that sets VerifAI apart is its in-page explanation system. When users hover over (or click) a highlighted phrase, a popup appears providing a clear explanation of why the information was flagged, including a corrected version and source links.',
   },
   {
-    icon: <CalendarClock className="w-10 h-10 text-primary mb-4" />,
-    title: 'Outdated Info Alerts',
-    description: 'Warns you if the information you are reading might be out of date or superseded by newer findings.',
-  },
-  {
-    icon: <ShieldCheck className="w-10 h-10 text-primary mb-4" />,
-    title: 'Source Reliability Insights',
-    description: 'Provides context on source credibility to help you judge the trustworthiness of information (coming soon).',
-  },
-  {
-    icon: <Puzzle className="w-10 h-10 text-primary mb-4" />,
-    title: 'Seamless Integration',
-    description: 'Works effortlessly within your browser, integrating smoothly with your online experience.',
-  },
-  {
-    icon: <Smile className="w-10 h-10 text-primary mb-4" />,
-    title: 'User-Friendly Interface',
-    description: 'Simple, intuitive alerts and explanations that are easy to understand at a glance.',
+    icon: <ThumbsUp className="w-10 h-10 text-primary mb-4" />,
+    title: 'User Feedback System',
+    description: 'VerifAI includes a feedback mechanism allowing users to rate explanations and submit feedback, helping to improve the AI’s accuracy and performance over time.',
   },
 ];
 

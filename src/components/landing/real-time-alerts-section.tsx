@@ -1,66 +1,63 @@
 "use client";
 
-import { useState, type FormEvent } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, AlertTriangle, CheckCircle, Info } from 'lucide-react';
-import { analyzeContentAction } from '@/app/actions'; // Server Action
-import type { FlagOutdatedInformationOutput } from '@/ai/flows/flag-outdated-info';
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { ThumbsUp, ThumbsDown, ExternalLink } from 'lucide-react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Link from 'next/link';
 
-const exampleTexts = [
+interface HighlightableText {
+  id: string;
+  content: string;
+  explanation: string;
+  sourceLink: string;
+  sourceText: string;
+}
+
+const highlightedContent: HighlightableText[] = [
   {
-    id: 'outdated',
-    label: 'Outdated News Example',
-    text: "Recent reports from 2010 indicate that Pluto is still considered the ninth planet in our solar system.",
+    id: 'region',
+    content: 'Antartica, Russia, and Europe.',
+    explanation: 'This region list is geographically inaccurate for the typical habitat of Duranta erecta. It is native to the Americas, from Florida to Brazil and the Caribbean, and has been introduced to other tropical/subtropical regions.',
+    sourceLink: 'https://en.wikipedia.org/wiki/Duranta_erecta',
+    sourceText: 'Wikipedia - Duranta erecta'
   },
   {
-    id: 'neutral',
-    label: 'Neutral Statement Example',
-    text: "Water is essential for all known forms of life. It is composed of hydrogen and oxygen.",
-  },
-  {
-    id: 'complex',
-    label: 'Complex/Nuanced Example',
-    text: "While some studies suggest benefits of a new miracle supplement, many doctors remain skeptical due to lack of long-term research.",
-  },
+    id: 'decay',
+    content: 'their ability to feed on decaying material. In terms of plant anatomy, these species help decompose and recycle the nutrients back to the soil.',
+    explanation: "While plants contribute to soil health through decomposition *after they die*, Duranta erecta itself doesn't primarily 'feed on' decaying material in the way fungi or certain microorganisms do. It's a photosynthetic plant obtaining energy from sunlight.",
+    sourceLink: 'https://www.gardeningknowhow.com/ornamental/shrubs/duranta/duranta-sky-flower.htm',
+    sourceText: 'Gardening Know How - Duranta'
+  }
+];
+
+const articleParts = [
+  { type: 'text', content: 'Duranta erecta is a flowering plant that can grow as a spreading or weeping evergreen shrub or small tree, growing up to 15-18 feet tall. It is native to the tropical regions of ' },
+  { type: 'highlight', highlightId: 'region' },
+  { type: 'text', content: ' Considering that it is a tropical plant, in lower temperatures, it is cultivated and grown as a smaller shrub, usually only reaching about 2-4 feet tall. Duranta erecta are important due to ' },
+  { type: 'highlight', highlightId: 'decay' },
+  { type: 'text', content: ' Duranta erecta (White Snakeroot) was collected near Antarctica. Specifically, near the permission from the authorities, it was collected on August 10th, 2023 at 6:00 PM. The flower was found as a plant in the vicinity. The container was not specified. It was carefully carried back ensuring enough space to prevent it from being undamaged during transport.'}
 ];
 
 
 export default function RealTimeAlertsSection() {
-  const [inputText, setInputText] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [analysisResult, setAnalysisResult] = useState<FlagOutdatedInformationOutput | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [activePopover, setActivePopover] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<{[key: string]: 'up' | 'down' | null}>({});
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    if (!inputText.trim()) {
-      setError("Please enter some text to analyze.");
-      setAnalysisResult(null);
-      return;
-    }
-    setIsLoading(true);
-    setAnalysisResult(null);
-    setError(null);
-
-    try {
-      const result = await analyzeContentAction({ webpageContent: inputText });
-      setAnalysisResult(result);
-    } catch (e) {
-      console.error("Analysis error:", e);
-      setError("Failed to analyze content. Please try again.");
-      setAnalysisResult({ shouldFlag: true, reason: "An error occurred during analysis."});
-    } finally {
-      setIsLoading(false);
-    }
+  const handleHighlightClick = (highlightId: string, event: React.MouseEvent<HTMLSpanElement>) => {
+    setActivePopover(prev => prev === highlightId ? null : highlightId);
   };
-
-  const handleExampleClick = (text: string) => {
-    setInputText(text);
-    setAnalysisResult(null);
-    setError(null);
+  
+  const handleFeedback = (highlightId: string, rating: 'up' | 'down') => {
+    setFeedback(prev => ({...prev, [highlightId]: rating}));
+    // Here you could also send feedback to a server
+    console.log(`Feedback for ${highlightId}: ${rating}`);
+    setTimeout(() => setActivePopover(null), 500); // Optionally close popover after feedback
   };
 
   return (
@@ -71,84 +68,91 @@ export default function RealTimeAlertsSection() {
             See VerifAI in Action
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-lg">
-            Paste text into the mock browser below or try an example to see how VerifAI flags potentially problematic content.
+            Click on the highlighted phrases in the text below to see VerifAI's explanation.
           </p>
         </div>
 
         <Card className="max-w-3xl mx-auto shadow-2xl">
           <CardHeader className="bg-muted/50 p-4 border-b">
+            {/* Browser UI mock */}
             <div className="flex items-center space-x-2 mb-2">
               <span className="w-3 h-3 bg-red-500 rounded-full"></span>
               <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
               <span className="w-3 h-3 bg-green-500 rounded-full"></span>
             </div>
-            <div className="bg-background p-2 rounded-md text-sm text-muted-foreground">
-              https://example-news-article.com/todays_top_story
+            <div className="bg-background p-2 rounded-md text-sm text-muted-foreground overflow-x-auto">
+              https://example-botany-article.com/duranta_erecta_guide
             </div>
           </CardHeader>
-          <CardContent className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Textarea
-                  placeholder="Paste content here to verify..."
-                  value={inputText}
-                  onChange={(e) => {
-                    setInputText(e.target.value);
-                    setAnalysisResult(null);
-                    setError(null);
-                  }}
-                  rows={8}
-                  className="w-full text-sm leading-relaxed border-input focus:ring-primary"
-                  aria-label="Text content to verify"
-                />
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {exampleTexts.map(ex => (
-                    <Button key={ex.id} type="button" variant="outline" size="sm" onClick={() => handleExampleClick(ex.text)}>
-                      Try: {ex.label}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-              <Button type="submit" disabled={isLoading || !inputText.trim()} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                {isLoading ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <Info className="mr-2 h-4 w-4" />
-                )}
-                Verify Content
-              </Button>
-            </form>
+          <CardContent className="p-6 md:p-8">
+            <h3 className="text-2xl font-semibold text-foreground mb-4">DURANTA ERECTA</h3>
+            <div className="text-foreground/80 leading-relaxed space-y-4">
+              <p>
+                {articleParts.map((part, index) => {
+                  if (part.type === 'text') {
+                    return <span key={index}>{part.content}</span>;
+                  }
+                  if (part.type === 'highlight' && part.highlightId) {
+                    const highlightData = highlightedContent.find(h => h.id === part.highlightId);
+                    if (!highlightData) return null;
 
-            {error && (
-              <Alert variant="destructive" className="mt-6">
-                <AlertTriangle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-
-            {analysisResult && !error && (
-              <div className="mt-6 p-4 border rounded-lg bg-secondary/30">
-                <h3 className="text-lg font-semibold mb-2 text-foreground">Analysis Result:</h3>
-                {analysisResult.shouldFlag ? (
-                  <Alert variant="destructive">
-                    <AlertTriangle className="h-5 w-5" />
-                    <AlertTitle className="font-semibold">Potentially Outdated/Problematic</AlertTitle>
-                    <AlertDescription className="mt-1 text-sm">
-                      {analysisResult.reason}
-                    </AlertDescription>
-                  </Alert>
-                ) : (
-                  <Alert variant="default" className="border-green-500 bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700">
-                     <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                    <AlertTitle className="font-semibold text-green-700 dark:text-green-300">Looks Good!</AlertTitle>
-                    <AlertDescription className="mt-1 text-sm text-green-600 dark:text-green-400">
-                       {analysisResult.reason || "This content does not appear to be outdated based on our analysis."}
-                    </AlertDescription>
-                  </Alert>
-                )}
-              </div>
-            )}
+                    return (
+                      <Popover key={highlightData.id} open={activePopover === highlightData.id} onOpenChange={(isOpen) => !isOpen && setActivePopover(null)}>
+                        <PopoverTrigger asChild>
+                          <span
+                            onClick={(e) => handleHighlightClick(highlightData.id, e)}
+                            className="bg-yellow-300/50 hover:bg-yellow-400/60 text-yellow-900 dark:bg-yellow-600/40 dark:hover:bg-yellow-500/50 dark:text-yellow-100 rounded px-1 py-0.5 cursor-pointer transition-colors"
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === 'Enter' && handleHighlightClick(highlightData.id, e as any)}
+                          >
+                            {highlightData.content}
+                          </span>
+                        </PopoverTrigger>
+                        <PopoverContent 
+                          side="bottom" 
+                          align="start" 
+                          className="w-80 md:w-96 z-50 bg-card shadow-xl rounded-lg border p-4"
+                          onEscapeKeyDown={() => setActivePopover(null)}
+                        >
+                          <div className="space-y-3">
+                            <h4 className="font-bold text-primary text-lg">VERIFAI</h4>
+                            <p className="text-sm text-card-foreground">{highlightData.explanation}</p>
+                            <Link href={highlightData.sourceLink} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline flex items-center gap-1">
+                              {highlightData.sourceText} <ExternalLink className="w-3 h-3" />
+                            </Link>
+                            <div className="mt-3 pt-3 border-t border-border">
+                              <p className="text-xs text-muted-foreground mb-2">How would you rate this explanation?</p>
+                              <div className="flex items-center gap-3">
+                                <Button 
+                                  variant={feedback[highlightData.id] === 'up' ? 'default' : 'outline'} 
+                                  size="icon" 
+                                  className={`h-8 w-8 rounded-full ${feedback[highlightData.id] === 'up' ? 'bg-green-500 hover:bg-green-600 text-white' : ''}`}
+                                  onClick={() => handleFeedback(highlightData.id, 'up')}
+                                  aria-label="Rate up"
+                                >
+                                  <ThumbsUp className="w-4 h-4" />
+                                </Button>
+                                <Button 
+                                  variant={feedback[highlightData.id] === 'down' ? 'default' : 'outline'} 
+                                  size="icon" 
+                                  className={`h-8 w-8 rounded-full ${feedback[highlightData.id] === 'down' ? 'bg-red-500 hover:bg-red-600 text-white' : ''}`}
+                                  onClick={() => handleFeedback(highlightData.id, 'down')}
+                                  aria-label="Rate down"
+                                >
+                                  <ThumbsDown className="w-4 h-4" />
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    );
+                  }
+                  return null;
+                })}
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

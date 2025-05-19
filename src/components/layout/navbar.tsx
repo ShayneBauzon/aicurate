@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, ShieldCheck } from 'lucide-react';
+import { Menu, ShieldCheck, LogOut } from 'lucide-react';
 
 export default function Navbar() {
   const navItems = [
@@ -31,6 +31,12 @@ export default function Navbar() {
           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
             <Link href="#cta">Download Now</Link>
           </Button>
+          <Button asChild variant="ghost" size="sm" className="text-foreground/70 hover:text-foreground">
+            <Link href="/login">
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
+            </Link>
+          </Button>
         </nav>
 
         <div className="md:hidden">
@@ -58,6 +64,12 @@ export default function Navbar() {
                 ))}
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 mt-4">
                   <Link href="#cta">Download Now</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="mt-2">
+                  <Link href="/login">
+                     <LogOut className="mr-2 h-5 w-5" />
+                    Logout
+                  </Link>
                 </Button>
               </div>
             </SheetContent>

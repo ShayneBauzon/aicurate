@@ -25,16 +25,16 @@ const highlightedContent: HighlightableText[] = [
   {
     id: 'region',
     content: 'Antartica, Russia, and Europe.',
-    explanation: 'This region list is geographically inaccurate for the typical habitat of Duranta erecta. It is native to the Americas, from Florida to Brazil and the Caribbean, and has been introduced to other tropical/subtropical regions.',
+    explanation: 'This description is false, as Duranta erecta is native to the tropical regions of the Americas, including Mexico, South Florida, and Brazil. It has been cultivated and naturalized in parts of Asia, Africa, and Oceania.',
     sourceLink: 'https://en.wikipedia.org/wiki/Duranta_erecta',
     sourceText: 'Wikipedia - Duranta erecta'
   },
   {
     id: 'decay',
     content: 'their ability to feed on decaying material. In terms of plant anatomy, these species help decompose and recycle the nutrients back to the soil.',
-    explanation: "While plants contribute to soil health through decomposition *after they die*, Duranta erecta itself doesn't primarily 'feed on' decaying material in the way fungi or certain microorganisms do. It's a photosynthetic plant obtaining energy from sunlight.",
-    sourceLink: 'https://www.gardeningknowhow.com/ornamental/shrubs/duranta/duranta-sky-flower.htm',
-    sourceText: 'Gardening Know How - Duranta'
+    explanation: "This description aligns more with the species Eulichas funebris.\n\nThe importance of Duranta erecta lies in its potential use in the medical field due to its ability to produce natural compounds such as alkaloids, glycosides, and flavonoids that are beneficial to the human body and are used to create medicine like pain relievers and stimulants.",
+    sourceLink: 'https://Durantaerecta.com',
+    sourceText: 'Durantaerecta.com'
   }
 ];
 
@@ -97,7 +97,7 @@ export default function RealTimeAlertsSection() {
             </div>
             <h3 className="text-2xl font-semibold text-foreground mb-4">DURANTA ERECTA</h3>
             <div className="text-foreground/80 leading-relaxed space-y-4">
-              <p>
+              <p style={{ whiteSpace: 'pre-line' }}> {/* Added white-space style for newline rendering */}
                 {articleParts.map((part, index) => {
                   if (part.type === 'text') {
                     return <span key={index}>{part.content}</span>;
@@ -127,7 +127,7 @@ export default function RealTimeAlertsSection() {
                         >
                           <div className="space-y-3">
                             <h4 className="font-bold text-primary text-lg">VERIFAI</h4>
-                            <p className="text-sm text-card-foreground">{highlightData.explanation}</p>
+                            <p className="text-sm text-card-foreground" style={{ whiteSpace: 'pre-line' }}>{highlightData.explanation}</p>
                             <Link href={highlightData.sourceLink} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline flex items-center gap-1">
                               {highlightData.sourceText} <ExternalLink className="w-3 h-3" />
                             </Link>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+// Removed Image import as we are using an inline SVG
 
 export default function HeroSection() {
   return (
@@ -23,16 +23,40 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl group">
-            <Image
-              src="https://placehold.co/1280x720.png"
-              alt="VerifAI browser extension in action"
-              layout="fill"
-              objectFit="cover"
-              className="transform group-hover:scale-105 transition-transform duration-500 ease-in-out"
-              data-ai-hint="browser extension user interface"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+          <div className="flex justify-center items-center"> {/* Centering for smaller screens / when grid collapses */}
+            <div className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-full lg:h-full rounded-xl group flex items-center justify-center bg-secondary/20 dark:bg-secondary/10 shadow-2xl overflow-hidden p-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 100 100"
+                className="w-full h-full max-w-[280px] max-h-[280px] sm:max-w-[320px] sm:max-h-[320px] lg:max-w-[380px] lg:max-h-[380px] transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                aria-labelledby="verifaiLogoTitle"
+              >
+                <title id="verifaiLogoTitle">VerifAI Logo</title>
+                {/* Shield background */}
+                <path
+                  d="M50 5 C 55 5, 90 20, 90 50 C 90 80, 55 95, 50 95 C 45 95, 10 80, 10 50 C 10 20, 45 5, 50 5 Z"
+                  fill="hsl(var(--primary))"
+                />
+                {/* 'V' letter */}
+                <path
+                  d="M30 35 L50 65 L70 35"
+                  stroke="hsl(var(--primary-foreground))"
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+                {/* Checkmark */}
+                <path
+                  d="M52 58 L60 66 L78 42"
+                  stroke="hsl(var(--accent))"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

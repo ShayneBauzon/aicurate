@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useRef } from 'react';
-import Image from 'next/image'; // Added Image import
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { ThumbsUp, ThumbsDown, ExternalLink } from 'lucide-react';
@@ -89,11 +89,10 @@ export default function RealTimeAlertsSection() {
           <CardContent className="p-6 md:p-8">
             <div className="mb-6 relative aspect-[16/9] w-full overflow-hidden rounded-lg shadow-md">
               <Image
-                src="https://placehold.co/768x432.png"
-                alt="Article image placeholder"
+                src="/photos/duranta-erecta.jpg"
+                alt="Duranta erecta plant with vibrant purple flowers and green leaves"
                 layout="fill"
                 objectFit="cover"
-                data-ai-hint="botanical illustration"
               />
             </div>
             <h3 className="text-2xl font-semibold text-foreground mb-4">DURANTA ERECTA</h3>
@@ -170,4 +169,3 @@ export default function RealTimeAlertsSection() {
     </section>
   );
 }
-

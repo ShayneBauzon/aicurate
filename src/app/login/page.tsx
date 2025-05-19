@@ -40,7 +40,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-2xl rounded-xl">
         <CardHeader className="text-center space-y-2 pt-8">
           <CardTitle className="text-3xl font-bold text-foreground">
-            Welcome Back
+            Login to VerifAI
           </CardTitle>
           <CardDescription className="text-muted-foreground">
             Enter your credentials to access VerifAI.

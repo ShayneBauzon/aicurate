@@ -89,7 +89,7 @@ export default function RealTimeAlertsSection() {
           <CardContent className="p-6 md:p-8">
             <div className="mb-6 relative aspect-[16/9] w-full overflow-hidden rounded-lg shadow-md">
               <Image
-                src="/photos/duranta-erecta.png"
+                src="/photos/durantaerecta.png"
                 alt="Duranta erecta plant with vibrant purple flowers and green leaves"
                 layout="fill"
                 objectFit="cover"

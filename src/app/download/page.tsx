@@ -1,3 +1,4 @@
+'use client'; // Add this directive
 
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -83,7 +84,12 @@ const reviews = [
 ];
 
 export default function DownloadPage() {
-  const currentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const [currentDate, setCurrentDate] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    setCurrentDate(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+  }, []);
+
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -205,7 +211,7 @@ export default function DownloadPage() {
                   <strong className="font-medium text-slate-700">Version:</strong> 1.0.0
                 </div>
                 <div>
-                  <strong className="font-medium text-slate-700">Updated:</strong> {currentDate}
+                  <strong className="font-medium text-slate-700">Updated:</strong> {currentDate || 'Loading...'}
                 </div>
                 <div>
                   <strong className="font-medium text-slate-700">Size:</strong> 1.2MB
@@ -244,5 +250,3 @@ export default function DownloadPage() {
     </div>
   );
 }
-
-    

@@ -1,6 +1,21 @@
 
 import Link from 'next/link';
-import Image from 'next/image'; 
+
+// Define the SVG logo component locally for the footer
+const AIcurateLogoIcon = () => (
+  <svg aria-label="AIcurate Logo Icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title id="aicuratelogo-target-icon-footer">AIcurate Target Logo Icon</title>
+    {/* Target Rings */}
+    <circle cx="16" cy="16" r="12" stroke="hsl(var(--primary))" strokeWidth="2" strokeOpacity="0.6"/>
+    <circle cx="16" cy="16" r="8" stroke="hsl(var(--primary))" strokeWidth="2"/>
+    <circle cx="16" cy="16" r="4" fill="hsl(var(--primary))"/>
+
+    {/* Arrow Shaft - from top-right towards center */}
+    <line x1="26" y1="6" x2="19" y2="13" stroke="hsl(var(--accent))" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* Arrow Head */}
+    <path d="M19 13 L21 10 L17 11 Z" fill="hsl(var(--accent))"/>
+  </svg>
+);
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,14 +25,9 @@ export default function Footer() {
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity" aria-label="AIcurate Homepage">
-              <Image
-                src="/photos/aicuratelogo.png" 
-                alt="AIcurate Logo"
-                width={240} // Using the intrinsic width for aspect ratio
-                height={56} // Using the intrinsic height for aspect ratio
-                className="h-16 w-auto" // Increased height for larger rendering
-              />
+            <Link href="/main" className="inline-flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity" aria-label="AIcurate Homepage">
+              <AIcurateLogoIcon />
+              <span className="font-semibold text-xl text-foreground">AIcurate</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Empowering you with trustworthy information, in real-time.

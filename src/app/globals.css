@@ -39,47 +39,44 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    /* Sidebar variables from original, can be kept or removed if not used by landing page */
-    /* For now, let's keep them distinct or map them to new theme if sidebar is used extensively */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 8 90% 70%; /* Align with new primary */
+    --sidebar-primary: 8 90% 70%; 
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 10 80% 88%; /* Align with new secondary */
+    --sidebar-accent: 10 80% 88%; 
     --sidebar-accent-foreground: 8 70% 45%;
-    --sidebar-border: 10 30% 85%; /* Align with new border */
-    --sidebar-ring: 8 90% 70%; /* Align with new ring */
+    --sidebar-border: 10 30% 85%; 
+    --sidebar-ring: 8 90% 70%; 
   }
 
   .dark {
-    /* Dark theme with salmon-pink inspiration */
-    --background: 10 15% 10%; /* #211E1D - Very Dark Warm Grey/Brown */
-    --foreground: 15 25% 88%; /* #EBE0DD - Light Pinkish Grey */
+    --background: 10 15% 10%; 
+    --foreground: 15 25% 88%; 
 
-    --card: 10 15% 12%; /* #252221 */
+    --card: 10 15% 12%; 
     --card-foreground: 15 25% 88%;
 
     --popover: 10 15% 12%;
     --popover-foreground: 15 25% 88%;
 
-    --primary: 8 80% 65%; /* #F37A69 - Brighter Salmon for Dark Mode */
-    --primary-foreground: 10 20% 15%; /* #2D2827 - Darker for text on primary */
+    --primary: 8 80% 65%; 
+    --primary-foreground: 10 20% 15%; 
 
-    --secondary: 10 40% 25%; /* #52423D - Muted Dark Salmon */
+    --secondary: 10 40% 25%; 
     --secondary-foreground: 15 25% 88%;
 
-    --muted: 10 20% 20%; /* #3D3634 */
-    --muted-foreground: 15 25% 70%; /* #BDB1AE */
+    --muted: 10 20% 20%; 
+    --muted-foreground: 15 25% 70%; 
 
-    --accent: 350 80% 68%; /* #F5798F - Brighter Pink Accent for Dark Mode */
-    --accent-foreground: 0 0% 10%; /* Dark text for accent */
+    --accent: 350 80% 68%; 
+    --accent-foreground: 0 0% 10%; 
     
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 10 20% 30%;    /* #574C49 - Dark Warm Grey Border */
-    --input: 10 20% 22%;     /* #433B38 */
-    --ring: 8 80% 65%;       /* Dark mode primary for focus rings */
+    --border: 10 20% 30%;    
+    --input: 10 20% 22%;     
+    --ring: 8 80% 65%;       
 
     --chart-1: 12 70% 65%;
     --chart-2: 173 50% 45%;
@@ -104,7 +101,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* font-family removed as it's handled by next/font in layout.tsx */
   }
 }
 
@@ -113,23 +109,17 @@
     animation: login-card-smooth-exit-animation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  .animate-hacker-glitch {
-    display: inline-block; /* Ensures background-clip works well */
-    background-image: linear-gradient(
-      90deg,
-      hsl(var(--foreground)) 0%,
-      hsl(var(--foreground)) 49.7%,
-      hsl(var(--accent)) 49.9%,  /* Sharp accent highlight */
-      hsl(var(--accent)) 50.1%,
-      hsl(var(--foreground)) 50.3%,
-      hsl(var(--foreground)) 100%
-    );
-    background-size: 400% auto; /* Large size for movement */
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: hacker-text-glitch-effect 3s steps(10, end) infinite alternate;
+  .word-to-highlight {
+    display: inline-block; /* Ensures background applies correctly per word */
+    animation-name: highlightScanEffect;
+    animation-duration: 9.6s; /* Calculated: 32 words * 0.3s delay step */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    padding: 0.05em 0.1em; /* Minimal padding for highlight visibility */
+    margin: -0.05em -0.1em; /* Compensate padding to maintain layout */
+    border-radius: 3px;
+    background-color: transparent; /* Start transparent */
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out; /* Smooth color transition for highlight */
   }
 }
 
@@ -144,28 +134,20 @@
   }
 }
 
-@keyframes hacker-text-glitch-effect {
-  0%, 100% {
-    background-position: 200% center;
-    background-size: 300% auto;
-    opacity: 1;
+@keyframes highlightScanEffect {
+  /* 
+    Each word's animation is staggered by 'animation-delay'.
+    This keyframe defines how a *single word* behaves during its "active" slot
+    within the total animation-duration (9.6s in this case).
+    A word is highlighted for a brief period (e.g., 5% of the total duration).
+    Example: 5% of 9.6s = 0.48s.
+  */
+  0%, 8%, 100% { /* Word is not highlighted for most of its cycle */
+    background-color: transparent;
+    /* color: inherit; */ /* color will inherit from parent, no need to reset */
   }
-  5% { background-position: -50% center; background-size: 310% auto; }
-  10% { background-position: 150% center; background-size: 290% auto; }
-  15% { background-position: -20% center; background-size: 305% auto; }
-  20% { background-position: 120% center; background-size: 300% auto; opacity: 0.8; }
-  25% { background-position: 0% center; background-size: 295% auto; }
-  30% { background-position: 100% center; background-size: 310% auto; }
-  35% { background-position: -10% center; background-size: 300% auto; }
-  40% { background-position: 80% center; background-size: 290% auto; opacity: 1; }
-  45% { background-position: 10% center; background-size: 305% auto; }
-  50% { background-position: 60% center; background-size: 300% auto; }
-  55% { background-position: 20% center; background-size: 310% auto; }
-  60% { background-position: 40% center; background-size: 295% auto; opacity: 0.9; }
-  61% { background-position: 45% center; background-size: 290% auto; }
-  62% { background-position: 38% center; background-size: 300% auto; }
-  63% { background-position: 42% center; background-size: 295% auto; }
-  70% { background-position: 180% center; background-size: 300% auto; }
-  80% { background-position: -70% center; background-size: 290% auto; }
-  90% { background-position: 160% center; background-size: 305% auto; opacity: 1; }
+  4% { /* Word becomes highlighted */
+    background-color: rgba(255, 220, 100, 0.5); /* Soft, semi-transparent yellow */
+     /* color: #1f1f1f; /* Optionally darken text for contrast on yellow */
+  }
 }

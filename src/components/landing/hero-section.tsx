@@ -1,19 +1,37 @@
 
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import React, { useMemo } from 'react';
+
+const textToAnimate = "Our AI-powered browser extension helps you curate information by detecting outdated, biased, or false content in real-time. Browse the web with confidence, knowing AIcurate has your back.";
+const wordsInText = textToAnimate.split(' ').length;
+const animationDelayStep = 0.3; // seconds per word
+const totalAnimationDuration = wordsInText * animationDelayStep;
 
 export default function HeroSection() {
+  const words = useMemo(() => textToAnimate.split(' '), []);
+
   return (
     <section id="hero" className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-br from-background to-secondary/30">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight animate-hacker-glitch">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight">
               Curate Information <span className="text-primary">Instantly</span> with AIcurate
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl lg:text-lg xl:text-xl">
-              Our AI-powered browser extension helps you curate information by detecting outdated, biased, or false content in real-time. Browse the web with confidence, knowing AIcurate has your back.
+              {words.map((word, index) => (
+                <span
+                  key={index}
+                  className="word-to-highlight"
+                  style={{ animationDelay: `${index * animationDelayStep}s` }}
+                >
+                  {word}{' '}
+                </span>
+              ))}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg transform hover:scale-105 transition-transform duration-200">
@@ -26,13 +44,12 @@ export default function HeroSection() {
           </div>
           
           <div className="relative flex justify-center items-center h-full">
-            {/* Main Logo Image */}
             <Image
               src="/photos/aicuratelogo.png"
               alt="AIcurate Logo"
               width={240} 
               height={56}  
-              className="relative z-10 transform hover:scale-105 transition-transform duration-300 ease-in-out" // Ensure logo is on top
+              className="relative z-10 transform hover:scale-105 transition-transform duration-300 ease-in-out"
               priority
             />
           </div>

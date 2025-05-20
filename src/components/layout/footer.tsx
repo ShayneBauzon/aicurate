@@ -16,9 +16,9 @@ export default function Footer() {
               <Image
                 src="/photos/aicuratelogo.png" 
                 alt="AIcurate Logo"
-                width={128} // Adjust width as needed for footer display
-                height={32} // Adjust height as needed for footer display
-                className="h-8 w-auto" // Maintain aspect ratio, set height
+                width={160} // Increased width
+                height={40} // Increased height
+                className="h-10 w-auto" // Adjusted class for new height
               />
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -29,10 +29,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-3">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="#features" className="text-sm text-muted-foreground hover:text-primary">Features</Link></li>
-              <li><Link href="#demo" className="text-sm text-muted-foreground hover:text-primary">Demo</Link></li>
-              <li><Link href="#testimonials" className="text-sm text-muted-foreground hover:text-primary">Testimonials</Link></li>
-              <li><Link href="#cta" className="text-sm text-muted-foreground hover:text-primary">Download</Link></li>
+              <li><Link href="/main#features" className="text-sm text-muted-foreground hover:text-primary">Features</Link></li>
+              <li><Link href="/main#demo" className="text-sm text-muted-foreground hover:text-primary">Demo</Link></li>
+              <li><Link href="/main#testimonials" className="text-sm text-muted-foreground hover:text-primary">Testimonials</Link></li>
+              <li><Link href="/download" className="text-sm text-muted-foreground hover:text-primary">Download</Link></li>
             </ul>
           </div>
 
@@ -53,4 +53,3 @@ export default function Footer() {
     </footer>
   );
 }
-

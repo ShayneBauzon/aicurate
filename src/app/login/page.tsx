@@ -2,7 +2,6 @@
 'use client'; 
 
 import { useState } from "react";
-// import Image from 'next/image'; // No longer using Image for logo here
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,10 +20,22 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 const AIcurateLogoIcon = () => (
-  <svg aria-label="AIcurate Logo" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg aria-label="AIcurate Logo Icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <title id="aicuratelogoiconlogin">AIcurate Logo Icon</title>
     <path d="M16 2C16 2 6 5.33333 6 16C6 26.6667 16 30 16 30C16 30 26 26.6667 26 16C26 5.33333 16 2 16 2Z" fill="hsl(var(--primary))"/>
-    <path d="M11 16L14.5 19.5L21 12.5" stroke="hsl(var(--primary-foreground))" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* Replaced checkmark with "AC" */}
+    <text 
+      x="16" 
+      y="17.5" 
+      dominantBaseline="middle" 
+      textAnchor="middle" 
+      fontFamily="Arial, sans-serif" 
+      fontSize="13" 
+      fontWeight="bold" 
+      fill="hsl(var(--primary-foreground))"
+    >
+      AC
+    </text>
   </svg>
 );
 
@@ -57,7 +68,6 @@ export default function LoginPage() {
       description: "Redirecting to the main page...",
     });
     router.push('/main'); 
-    // setIsLoading(false); // This line is not strictly necessary as the page will redirect
   };
 
   return (

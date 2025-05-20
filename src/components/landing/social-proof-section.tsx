@@ -9,7 +9,7 @@ const testimonials = [
     avatar: 'SL',
     image: 'https://placehold.co/100x100.png',
     imageHint: 'woman portrait',
-    quote: "VerifAI has become an indispensable tool for my research. It helps me quickly sift through information and identify potentially outdated studies. A real time-saver!",
+    quote: "AIcurate has become an indispensable tool for my research. It helps me quickly sift through information and identify potentially outdated studies. A real time-saver!",
     rating: 5,
   },
   {
@@ -18,7 +18,7 @@ const testimonials = [
     avatar: 'MP',
     image: 'https://placehold.co/100x100.png',
     imageHint: 'man glasses',
-    quote: "In my line of work, accuracy is paramount. VerifAI gives me an extra layer of confidence by flagging content that needs a second look. Highly recommended!",
+    quote: "In my line of work, accuracy is paramount. AIcurate gives me an extra layer of confidence by flagging content that needs a second look. Highly recommended!",
     rating: 5,
   },
   {
@@ -27,7 +27,7 @@ const testimonials = [
     avatar: 'JW',
     image: 'https://placehold.co/100x100.png',
     imageHint: 'student smiling',
-    quote: "As a student, I'm constantly browsing for information. VerifAI helps me avoid unreliable sources and ensures my assignments are based on credible facts.",
+    quote: "As a student, I'm constantly browsing for information. AIcurate helps me avoid unreliable sources and ensures my assignments are based on credible facts.",
     rating: 4,
   },
 ];
@@ -41,7 +41,7 @@ export default function SocialProofSection() {
             Trusted by Users Like You
           </h2>
           <p className="mt-4 max-w-xl mx-auto text-muted-foreground md:text-lg">
-            Hear what our users have to say about how VerifAI has transformed their online experience.
+            Hear what our users have to say about how AIcurate has transformed their online experience.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

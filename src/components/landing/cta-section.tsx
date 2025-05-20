@@ -19,12 +19,12 @@ export default function CtaSection() {
             Ready to Browse with <span className="text-primary">Confidence</span>?
           </h2>
           <p className="mt-6 mb-10 text-muted-foreground md:text-xl max-w-xl mx-auto">
-            Download VerifAI today and take control of your online information. It's free, secure, and easy to get started.
+            Download AIcurate today and take control of your online information. It's free, secure, and easy to get started.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
             <Button asChild size="lg" className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl transform hover:scale-105 transition-transform duration-200 px-10 py-7 text-lg">
               <Link href="#chrome-store-link">
-                <DownloadCloud className="mr-2 h-5 w-5" /> Download VerifAI Now
+                <DownloadCloud className="mr-2 h-5 w-5" /> Download AIcurate Now
               </Link>
             </Button>
           </div>

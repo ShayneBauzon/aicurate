@@ -67,10 +67,10 @@ export default function RealTimeAlertsSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">
-            See VerifAI in Action
+            See AIcurate in Action
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-lg">
-            Click on the highlighted phrases in the text below to see VerifAI's explanation.
+            Click on the highlighted phrases in the text below to see AIcurate's explanation.
           </p>
         </div>
 
@@ -126,7 +126,7 @@ export default function RealTimeAlertsSection() {
                           onEscapeKeyDown={() => setActivePopover(null)}
                         >
                           <div className="space-y-3">
-                            <h4 className="font-bold text-primary text-lg">VERIFAI</h4>
+                            <h4 className="font-bold text-primary text-lg">AICURATE</h4>
                             <p className="text-sm text-card-foreground" style={{ whiteSpace: 'pre-line' }}>{highlightData.explanation}</p>
                             <Link href={highlightData.sourceLink} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline flex items-center gap-1">
                               {highlightData.sourceText} <ExternalLink className="w-3 h-3" />

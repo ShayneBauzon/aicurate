@@ -15,7 +15,7 @@ export default function Navbar() {
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 mr-6">
           <ShieldCheck className="h-7 w-7 text-primary" />
-          <span className="text-xl font-bold text-primary">VerifAI</span>
+          <span className="text-xl font-bold text-primary">AIcurate</span>
         </Link>
         
         <nav className="hidden md:flex gap-6 items-center">
@@ -51,7 +51,7 @@ export default function Navbar() {
               <div className="grid gap-4 py-6">
                 <Link href="/" className="flex items-center gap-2 mb-4">
                   <ShieldCheck className="h-7 w-7 text-primary" />
-                  <span className="text-xl font-bold text-primary">VerifAI</span>
+                  <span className="text-xl font-bold text-primary">AIcurate</span>
                 </Link>
                 {navItems.map((item) => (
                   <Link

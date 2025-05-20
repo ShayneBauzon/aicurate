@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <ShieldCheck className="h-7 w-7 text-primary" />
-              <span className="text-xl font-bold text-primary">VerifAI</span>
+              <span className="text-xl font-bold text-primary">AIcurate</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Empowering you with trustworthy information, in real-time.
@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 border-t pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} VerifAI. All rights reserved.
+            &copy; {currentYear} AIcurate. All rights reserved.
           </p>
         </div>
       </div>

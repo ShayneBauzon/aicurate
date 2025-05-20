@@ -28,7 +28,7 @@ export default function RegisterPage() {
       <div className="absolute top-8 left-8">
         <Link href="/" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
           <ShieldCheck className="h-7 w-7" />
-          <span className="text-xl font-bold">VerifAI</span>
+          <span className="text-xl font-bold">AIcurate</span>
         </Link>
       </div>
       <Card className="w-full max-w-md shadow-2xl rounded-xl">
@@ -40,7 +40,7 @@ export default function RegisterPage() {
             Create an Account
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Join VerifAI to start browsing with confidence.
+            Join AIcurate to start browsing with confidence.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 py-8">

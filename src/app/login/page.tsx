@@ -34,16 +34,16 @@ export default function LoginPage() {
       <div className="absolute top-8 left-8">
         <Link href="/" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
           <ShieldCheck className="h-7 w-7" />
-          <span className="text-xl font-bold">VerifAI</span>
+          <span className="text-xl font-bold">AIcurate</span>
         </Link>
       </div>
       <Card className="w-full max-w-md shadow-2xl rounded-xl">
         <CardHeader className="text-center space-y-2 pt-8">
           <CardTitle className="text-3xl font-bold text-foreground">
-            Login to VerifAI
+            Login to AIcurate
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Enter your credentials to access VerifAI.
+            Enter your credentials to access AIcurate.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6 py-8">

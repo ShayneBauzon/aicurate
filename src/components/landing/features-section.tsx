@@ -5,17 +5,17 @@ const features = [
   {
     icon: <Cpu className="w-10 h-10 text-primary mb-4" />,
     title: 'Real-Time AI Detection',
-    description: 'One of VerifAI’s core features is an integrated AI detector that identifies outdated, biased, or false information in real time. It precisely highlights specific words or phrases, flagging them as false or misleading.',
+    description: 'One of AIcurate’s core features is an integrated AI detector that identifies outdated, biased, or false information in real time. It precisely highlights specific words or phrases, flagging them as false or misleading.',
   },
   {
     icon: <MessageSquareText className="w-10 h-10 text-primary mb-4" />,
     title: 'In-Page AI Explanation',
-    description: 'A unique feature that sets VerifAI apart is its in-page explanation system. When users hover over (or click) a highlighted phrase, a popup appears providing a clear explanation of why the information was flagged, including a corrected version and source links.',
+    description: 'A unique feature that sets AIcurate apart is its in-page explanation system. When users hover over (or click) a highlighted phrase, a popup appears providing a clear explanation of why the information was flagged, including a corrected version and source links.',
   },
   {
     icon: <ThumbsUp className="w-10 h-10 text-primary mb-4" />,
     title: 'User Feedback System',
-    description: 'VerifAI includes a feedback mechanism allowing users to rate explanations and submit feedback, helping to improve the AI’s accuracy and performance over time.',
+    description: 'AIcurate includes a feedback mechanism allowing users to rate explanations and submit feedback, helping to improve the AI’s accuracy and performance over time.',
   },
 ];
 
@@ -28,7 +28,7 @@ export default function FeaturesSection() {
             Powerful Features at Your Fingertips
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-lg">
-            VerifAI is packed with cutting-edge capabilities to ensure you navigate the web with clarity and confidence.
+            AIcurate is packed with cutting-edge capabilities to ensure you navigate the web with clarity and confidence.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

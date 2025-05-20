@@ -1,16 +1,18 @@
+
 'use client'; // Add this directive
 
-import { Metadata } from 'next';
+import React from 'react'; // Explicitly import React for useState and useEffect
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Download AIcurate Extension - Chrome Web Store',
-  description: 'Install the AIcurate browser extension to curate information by detecting outdated, biased, or false content in real-time.',
-};
+// Metadata should be defined in a Server Component or layout.tsx
+// export const metadata: Metadata = {
+//   title: 'Download AIcurate Extension - Chrome Web Store',
+//   description: 'Install the AIcurate browser extension to curate information by detecting outdated, biased, or false content in real-time.',
+// };
 
 const AicurateLogo = () => (
   <svg
@@ -122,8 +124,8 @@ export default function DownloadPage() {
                 <span className="text-sm text-slate-500">10,000+ users</span>
               </div>
             </div>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="mt-4 sm:mt-0 sm:ml-6 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-semibold shrink-0"
               onClick={() => alert("Redirecting to Chrome Web Store (simulation)... This would be the actual install link.")}
             >
@@ -172,7 +174,7 @@ export default function DownloadPage() {
                 ))}
               </CardContent>
             </Card>
-            
+
             {/* User Reviews Section */}
             <Card className="mb-8 shadow-sm">
               <CardHeader>
@@ -220,12 +222,12 @@ export default function DownloadPage() {
                   <strong className="font-medium text-slate-700">Languages:</strong> English
                 </div>
                  <div>
-                  <strong className="font-medium text-slate-700">Developer:</strong> 
+                  <strong className="font-medium text-slate-700">Developer:</strong>
                   <Link href="#" className="text-blue-600 hover:underline ml-1">AIcurate Team</Link>
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card className="shadow-sm">
                 <CardHeader>
                     <CardTitle className="text-lg font-semibold text-slate-700">Privacy Practices</CardTitle>

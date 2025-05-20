@@ -1,24 +1,20 @@
 
-'use client'; // Add this directive
+'use client';
 
-import React from 'react'; // Explicitly import React for useState and useEffect
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare } from 'lucide-react';
-
-// Metadata should be defined in a Server Component or layout.tsx
-// export const metadata: Metadata = {
-//   title: 'Download AIcurate Extension - Chrome Web Store',
-//   description: 'Install the AIcurate browser extension to curate information by detecting outdated, biased, or false content in real-time.',
-// };
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { Progress } from '@/components/ui/progress'; // Though not used in final, good to have if we want progress bar
+import { ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare, PackagePlus, AlertTriangle, Loader2 } from 'lucide-react';
 
 const AicurateLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
-    className="w-16 h-16 mr-4" // Adjusted size for store page
+    className="w-16 h-16 mr-4"
     aria-labelledby="aicurateLogoDownloadPageTitle"
   >
     <title id="aicurateLogoDownloadPageTitle">AIcurate Logo</title>
@@ -85,12 +81,53 @@ const reviews = [
   }
 ];
 
+type InstallStep = 'idle' | 'confirming' | 'installing' | 'installed' | 'error';
+
 export default function DownloadPage() {
   const [currentDate, setCurrentDate] = React.useState<string | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [installStep, setInstallStep] = useState<InstallStep>('idle');
+  const [mainButtonText, setMainButtonText] = useState('Add to Chrome');
+  const [isMainButtonDisabled, setIsMainButtonDisabled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentDate(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
   }, []);
+
+  const handleAddToChromeClick = () => {
+    if (installStep === 'installed') return;
+    setInstallStep('confirming');
+    setIsDialogOpen(true);
+  };
+
+  const handleConfirmInstall = () => {
+    setInstallStep('installing');
+    // Simulate installation process
+    setTimeout(() => {
+      // Simulate a chance of error for demo
+      // const success = Math.random() > 0.2; 
+      const success = true; // For now, always success
+      if (success) {
+        setInstallStep('installed');
+        setMainButtonText('Added to Chrome');
+        setIsMainButtonDisabled(true);
+      } else {
+        setInstallStep('error');
+      }
+    }, 2500); // Simulate 2.5 seconds installation time
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+    if (installStep !== 'installed' && installStep !== 'error') {
+      setInstallStep('idle');
+    }
+  };
+  
+  const resetInstallFlow = () => {
+    setIsDialogOpen(false);
+    setInstallStep('idle');
+  };
 
 
   return (
@@ -102,13 +139,11 @@ export default function DownloadPage() {
                 <ShieldCheck className="h-7 w-7 text-primary" />
                 <span className="text-xl font-bold text-primary">AIcurate Home</span>
             </Link>
-            {/* Optional: Search bar or other store header elements could go here */}
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Extension Header */}
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center">
             <AicurateLogo />
@@ -126,18 +161,19 @@ export default function DownloadPage() {
             </div>
             <Button
               size="lg"
-              className="mt-4 sm:mt-0 sm:ml-6 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-semibold shrink-0"
-              onClick={() => alert("Redirecting to Chrome Web Store (simulation)... This would be the actual install link.")}
+              className={`mt-4 sm:mt-0 sm:ml-6 text-white px-8 py-3 text-base font-semibold shrink-0 transition-colors
+                ${isMainButtonDisabled ? 'bg-green-600 hover:bg-green-700 cursor-default' : 'bg-blue-600 hover:bg-blue-700'}`}
+              onClick={handleAddToChromeClick}
+              disabled={isMainButtonDisabled}
             >
-              Add to Chrome
+              {isMainButtonDisabled ? <CheckCircle className="mr-2 h-5 w-5" /> : null}
+              {mainButtonText}
             </Button>
           </div>
         </section>
 
-        {/* Main Content Area (Overview, Screenshots, etc.) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            {/* Overview Section */}
             <Card className="mb-8 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-slate-700">Overview</CardTitle>
@@ -157,7 +193,6 @@ export default function DownloadPage() {
               </CardContent>
             </Card>
 
-            {/* Features Section (Simplified) */}
              <Card className="mb-8 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-slate-700">Features</CardTitle>
@@ -175,7 +210,6 @@ export default function DownloadPage() {
               </CardContent>
             </Card>
 
-            {/* User Reviews Section */}
             <Card className="mb-8 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-slate-700">User Reviews</CardTitle>
@@ -199,7 +233,6 @@ export default function DownloadPage() {
             </Card>
           </div>
 
-          {/* Sidebar with Additional Information */}
           <div className="lg:col-span-1 space-y-6">
             <Card className="shadow-sm">
               <CardHeader>
@@ -249,6 +282,79 @@ export default function DownloadPage() {
             <Link href="/main" className="text-xs text-blue-600 hover:underline">Back to AIcurate Homepage</Link>
         </div>
       </footer>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md" onInteractOutside={(e) => e.preventDefault()}>
+          {installStep === 'confirming' && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center text-lg">
+                  <PackagePlus className="w-6 h-6 mr-2 text-blue-600" />
+                  Add "AIcurate"?
+                </DialogTitle>
+                <DialogDescription className="pt-2">
+                  To provide its features, AIcurate needs permission to:
+                  <ul className="list-disc pl-5 mt-2 text-sm text-slate-600 space-y-1">
+                    <li>Read and change data on websites you visit</li>
+                    <li>Display notifications</li>
+                  </ul>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="sm:justify-between mt-4">
+                <Button variant="outline" onClick={resetInstallFlow} className="sm:mr-auto">
+                  Cancel
+                </Button>
+                <Button onClick={handleConfirmInstall} className="bg-blue-600 hover:bg-blue-700 text-white">
+                  Add extension
+                </Button>
+              </DialogFooter>
+            </>
+          )}
+          {installStep === 'installing' && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-lg">Installing AIcurate...</DialogTitle>
+              </DialogHeader>
+              <div className="flex flex-col items-center justify-center py-8 space-y-4">
+                <Loader2 className="w-12 h-12 text-primary animate-spin" />
+                <p className="text-sm text-slate-500">Please wait while the extension is being added.</p>
+              </div>
+            </>
+          )}
+          {installStep === 'installed' && (
+            <>
+              <DialogHeader>
+                 <DialogTitle className="flex items-center text-lg text-green-600">
+                   <CheckCircle className="w-6 h-6 mr-2" />
+                  AIcurate has been added to Chrome
+                </DialogTitle>
+                <DialogDescription className="pt-2">
+                  You can manage your extensions by clicking the puzzle icon in the Chrome toolbar.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="mt-4">
+                <Button onClick={handleCloseDialog} className="w-full">Okay</Button>
+              </DialogFooter>
+            </>
+          )}
+           {installStep === 'error' && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="flex items-center text-lg text-red-600">
+                  <AlertTriangle className="w-6 h-6 mr-2" />
+                  Installation Failed
+                </DialogTitle>
+                <DialogDescription className="pt-2">
+                  An unexpected error occurred while trying to add AIcurate. Please try again later.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="mt-4">
+                <Button onClick={resetInstallFlow} className="w-full">Close</Button>
+              </DialogFooter>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

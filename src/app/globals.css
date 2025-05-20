@@ -117,12 +117,12 @@
     display: inline-block; /* Ensures background-clip works well */
     background-image: linear-gradient(
       90deg,
-      hsla(var(--foreground), 0.8) 0%,
-      hsla(var(--foreground), 0.8) 49.7%,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--foreground)) 49.7%,
       hsl(var(--accent)) 49.9%,  /* Sharp accent highlight */
       hsl(var(--accent)) 50.1%,
-      hsla(var(--foreground), 0.8) 50.3%,
-      hsla(var(--foreground), 0.8) 100%
+      hsl(var(--foreground)) 50.3%,
+      hsl(var(--foreground)) 100%
     );
     background-size: 400% auto; /* Large size for movement */
     background-clip: text;

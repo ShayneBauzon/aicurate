@@ -25,10 +25,9 @@ export default function HeroSection() {
             </div>
           </div>
           
-          {/* Updated Logo Area with Animations */}
-          <div className="flex justify-center items-center"> {/* Outer container for alignment */}
-            <div className="relative group w-[280px] h-[100px]"> {/* Container for logo + animations */}
-              {/* Animated Elements - Background */}
+          <div className="flex justify-center items-center">
+            <div className="relative group w-[280px] h-[100px]">
+              {/* Animated Elements - Surrounding the logo */}
               <svg
                 className="absolute inset-0 w-full h-full pointer-events-none" 
                 viewBox="0 0 280 100" 
@@ -39,7 +38,7 @@ export default function HeroSection() {
                 <circle
                   cx="140" 
                   cy="50"  
-                  r="45"   
+                  r="48"
                   stroke="hsl(var(--primary))"
                   strokeWidth="1.5"
                   strokeDasharray="5 10" 
@@ -49,7 +48,7 @@ export default function HeroSection() {
                 <circle
                   cx="140"
                   cy="50"
-                  r="55" 
+                  r="135"
                   stroke="hsl(var(--accent))"
                   strokeWidth="1"
                   strokeDasharray="8 8"
@@ -59,7 +58,7 @@ export default function HeroSection() {
               </svg>
 
               {/* Actual Logo Image - Foreground */}
-              <div className="relative z-10 flex justify-center items-center w-full h-full"> {/* Centering div for the image */}
+              <div className="relative z-10 flex justify-center items-center w-full h-full">
                 <Image
                   src="/photos/aicuratelogo.png"
                   alt="AIcurate Logo"

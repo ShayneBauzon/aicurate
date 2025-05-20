@@ -21,21 +21,13 @@ import { cn } from "@/lib/utils";
 
 const AIcurateLogoIcon = () => (
   <svg aria-label="AIcurate Logo Icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <title id="aicuratelogoiconlogin">AIcurate Logo Icon</title>
-    <path d="M16 2C16 2 6 5.33333 6 16C6 26.6667 16 30 16 30C16 30 26 26.6667 26 16C26 5.33333 16 2 16 2Z" fill="hsl(var(--primary))"/>
-    <text
-      x="16"
-      y="17.5"
-      dominantBaseline="middle"
-      textAnchor="middle"
-      fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
-      fontSize="14"
-      fontWeight="600"
-      fill="hsl(var(--primary-foreground))"
-      letterSpacing="-0.5"
-    >
-      AC
-    </text>
+    <title id="aicuratelogo-graphic-title">AIcurate Logo Icon</title>
+    {/* Magnifying glass circle */}
+    <circle cx="14" cy="13" r="7" stroke="hsl(var(--primary))" strokeWidth="2.5"/>
+    {/* Handle */}
+    <line x1="19" y1="18" x2="24" y2="23" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* AI Spark inside the lens */}
+    <path d="M14 10.5 L14.8 12.5 L16.8 13 L14.8 13.5 L14 15.5 L13.2 13.5 L11.2 13 L13.2 12.5 Z" fill="hsl(var(--primary-foreground))"/>
   </svg>
 );
 

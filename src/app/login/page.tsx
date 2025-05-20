@@ -16,63 +16,41 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { ShieldCheck, Loader2 } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 
-const loginSchema = z.object({
-  email: z.string().email({ message: "Invalid email address." }),
-  password: z.string().min(1, { message: "Password cannot be empty." }),
-});
-
-type LoginFormValues = z.infer<typeof loginSchema>;
-
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const { toast } = useToast();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-  });
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
 
-  const handleLogin: SubmitHandler<LoginFormValues> = async (data) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast({
-          title: "Login Initiated",
-          description: "Please check your console for the 2FA code (simulated email).",
-        });
-        // Store email for 2FA page. In a real app, this might be part of the pre-2FA token or session.
-        localStorage.setItem('aicurate_2fa_email', data.email); 
-        router.push('/verify-2fa');
-      } else {
-        toast({
-          title: "Login Failed",
-          description: result.error || "An unexpected error occurred.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Login submission error:", error);
-      toast({
-        title: "Login Error",
-        description: "Could not connect to the server. Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+    if (!email.trim() || !email.includes('@')) {
+      setError("Please enter a valid email address.");
+      return;
     }
+    if (!password.trim()) {
+      setError("Password cannot be empty.");
+      return;
+    }
+
+    setIsLoading(true);
+    // Simulate API call / processing time
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    toast({
+      title: "Login Successful!",
+      description: "Redirecting to the main page...",
+    });
+    router.push('/main'); 
+    // In a real app, you might not want to setIsLoading(false) if redirecting immediately
+    // but for a demo, it ensures the button re-enables if something goes wrong with redirection.
+    setIsLoading(false); 
   };
 
   return (
@@ -92,7 +70,7 @@ export default function LoginPage() {
             Enter your credentials to access AIcurate.
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleSubmit(handleLogin)}>
+        <form onSubmit={handleLogin}>
           <CardContent className="space-y-6 py-8">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium text-foreground/80">Email</Label>
@@ -101,16 +79,16 @@ export default function LoginPage() {
                 type="email" 
                 placeholder="you@example.com" 
                 className="bg-input border-border focus:ring-primary"
-                {...register("email")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
               />
-              {errors.email && <p className="text-xs text-destructive pt-1">{errors.email.message}</p>}
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" className="text-sm font-medium text-foreground/80">Password</Label>
                 <Link
-                  href="#" // Add a proper forgot password page if needed
+                  href="#" 
                   className={`text-xs text-primary hover:underline ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
                   aria-disabled={isLoading}
                   tabIndex={isLoading ? -1 : undefined}
@@ -123,11 +101,12 @@ export default function LoginPage() {
                 type="password" 
                 placeholder="••••••••" 
                 className="bg-input border-border focus:ring-primary"
-                {...register("password")}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
               />
-              {errors.password && <p className="text-xs text-destructive pt-1">{errors.password.message}</p>}
             </div>
+            {error && <p className="text-xs text-destructive pt-1">{error}</p>}
           </CardContent>
           <CardFooter className="flex flex-col gap-4 pb-8">
             <Button 

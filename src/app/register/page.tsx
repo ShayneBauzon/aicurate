@@ -16,67 +16,51 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { ShieldCheck, UserPlus, Loader2 } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 
-
-const registerSchema = z.object({
-  fullName: z.string().min(2, { message: "Full name must be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
-  password: z.string().min(8, { message: "Password must be at least 8 characters." }),
-  confirmPassword: z.string().min(8, { message: "Password must be at least 8 characters." }),
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords don't match.",
-  path: ["confirmPassword"], // path of error
-});
-
-type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
-  });
 
-  const handleRegister: SubmitHandler<RegisterFormValues> = async (data) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName: data.fullName, email: data.email, password: data.password }),
-      });
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
 
-      const result = await response.json();
-
-      if (response.ok) {
-        toast({
-          title: "Registration Successful!",
-          description: "You can now log in with your new account.",
-        });
-        router.push('/login');
-      } else {
-        toast({
-          title: "Registration Failed",
-          description: result.error || "An unexpected error occurred.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Registration submission error:", error);
-      toast({
-        title: "Registration Error",
-        description: "Could not connect to the server. Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+    if (!fullName.trim()) {
+      setError("Full name cannot be empty.");
+      return;
     }
+    if (!email.trim() || !email.includes('@')) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!password.trim()) {
+      setError("Password cannot be empty.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("Passwords don't match.");
+      return;
+    }
+    
+    setIsLoading(true);
+    // Simulate API call / processing time
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    toast({
+      title: "Registration Successful!",
+      description: "You can now log in with your new account.",
+    });
+    router.push('/login');
+    setIsLoading(false);
   };
 
   return (
@@ -99,7 +83,7 @@ export default function RegisterPage() {
             Join AIcurate to start browsing with confidence.
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleSubmit(handleRegister)}>
+        <form onSubmit={handleRegister}>
           <CardContent className="space-y-4 py-8">
             <div className="space-y-2">
               <Label htmlFor="fullName" className="text-sm font-medium text-foreground/80">Full Name</Label>
@@ -108,10 +92,10 @@ export default function RegisterPage() {
                 type="text"
                 placeholder="John Doe"
                 className="bg-input border-border focus:ring-primary"
-                {...register("fullName")}
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 disabled={isLoading}
               />
-              {errors.fullName && <p className="text-xs text-destructive pt-1">{errors.fullName.message}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium text-foreground/80">Email</Label>
@@ -120,10 +104,10 @@ export default function RegisterPage() {
                 type="email"
                 placeholder="you@example.com"
                 className="bg-input border-border focus:ring-primary"
-                {...register("email")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
               />
-              {errors.email && <p className="text-xs text-destructive pt-1">{errors.email.message}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="password" className="text-sm font-medium text-foreground/80">Password</Label>
@@ -132,10 +116,10 @@ export default function RegisterPage() {
                 type="password"
                 placeholder="••••••••"
                 className="bg-input border-border focus:ring-primary"
-                {...register("password")}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
               />
-              {errors.password && <p className="text-xs text-destructive pt-1">{errors.password.message}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="confirmPassword" className="text-sm font-medium text-foreground/80">Confirm Password</Label>
@@ -144,11 +128,12 @@ export default function RegisterPage() {
                 type="password"
                 placeholder="••••••••"
                 className="bg-input border-border focus:ring-primary"
-                {...register("confirmPassword")}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={isLoading}
               />
-              {errors.confirmPassword && <p className="text-xs text-destructive pt-1">{errors.confirmPassword.message}</p>}
             </div>
+            {error && <p className="text-xs text-destructive pt-1">{error}</p>}
           </CardContent>
           <CardFooter className="flex flex-col gap-4 pb-8">
             <Button 

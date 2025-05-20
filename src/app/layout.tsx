@@ -10,8 +10,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: 'AIcurate - Real-time Information Curation',
-  description: 'AIcurate is an AI-powered browser extension that helps you curate information by detecting outdated, biased, or false content in real time.',
+  title: 'AIcurate - Real-time Information Verification',
+  description: 'AIcurate is an AI-powered browser extension that helps you verify information by detecting outdated, biased, or false content in real time.',
 };
 
 export default function RootLayout({

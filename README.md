@@ -94,7 +94,7 @@ Once the development server is running:
     *   Enter your registered email and any password (authentication is simulated) and click "Login."
 4.  **Main Application:** After "login," you'll be taken to the Main Application Page (`/main`), where you can explore the different sections:
     *   **Hero Section:** Introduction to AIcurate.
-    *   **Features Section:** Details on core functionalities.
+    *   **Features Section:** Details on core functionalities for information verification.
     *   **Demo Section ("See AIcurate in Action"):** Interact with highlighted text to see simulated AI explanations.
     *   **Social Proof Section:** User testimonials.
     *   **CTA Section:** Links to the simulated download page.
@@ -108,8 +108,8 @@ Once the development server is running:
     *   Login page with basic validation and a smooth transition animation.
     *   Automatic redirect to login for first-time visitors.
 *   **Promotional Landing Page (`/main`):**
-    *   **Hero Section:** Captivating introduction to AIcurate.
-    *   **Features Showcase:** Visually engaging presentation of AIcurate's key functionalities (Real-Time AI Detection, In-Page AI Explanation, User Feedback System).
+    *   **Hero Section:** Captivating introduction to AIcurate, emphasizing instant information verification.
+    *   **Features Showcase:** Visually engaging presentation of AIcurate's key functionalities (Real-Time AI Detection, In-Page AI Explanation, User Feedback System) designed to help users verify web content.
     *   **Interactive Demo Section:** Simulates AIcurate flagging content on a sample article. Clicking highlighted text reveals popovers with explanations, source links, and feedback buttons.
     *   **Social Proof/Testimonials:** Mock user testimonials.
     *   **Call to Action (CTA):** Prominent "Download Now" buttons.
@@ -171,10 +171,10 @@ Once the development server is running:
 *   **Expected**:
     *   **Navbar**: Point out the navigation links ("Features", "Demo", "Testimonials"), the "Download Now" button, and the "Logout" button.
         *   *"The main page features a clean navbar for easy navigation and access to key sections like downloading the extension or logging out."*
-    *   **Hero Section**: Briefly mention the value proposition and the custom logo.
-        *   *"The hero section clearly communicates AIcurate's mission: to help users browse with confidence by identifying problematic content."*
+    *   **Hero Section**: Briefly mention the value proposition: "AIcurate helps you verify information instantly". Note the animated text.
+        *   *"The hero section clearly communicates AIcurate's mission: to help users browse with confidence by identifying problematic content through real-time verification."*
     *   **Features Section**: Highlight the three core features verbally (Real-Time AI Detection, In-Page AI Explanation, User Feedback System).
-        *   *"AIcurate offers powerful features: real-time detection of misinformation, clear in-page explanations with sources, and a user feedback system to continuously improve its accuracy."*
+        *   *"AIcurate offers powerful features: real-time detection of misinformation, clear in-page explanations with sources for verification, and a user feedback system to continuously improve its accuracy."*
     *   **Demo Section ("See AIcurate in Action")**: Transition to this for the interactive part.
         *   *"Now, let's see a practical demonstration of how AIcurate works."*
     *   **Social Proof Section**: Briefly mention.
@@ -341,3 +341,5 @@ Please ensure your code follows the existing style and conventions.
 *   **Accessibility (A11y) Enhancements:** Further review and improvements for accessibility.
 
 ---
+
+This README aims to provide a clear guide for demonstrating AIcurate. The presenter should feel free to adapt the language and flow as needed to best showcase the project's value.

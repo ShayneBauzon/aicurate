@@ -4,9 +4,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import React, { useEffect, useState } from 'react'; // Updated import
+import React, { useEffect, useState } from 'react';
 
-const textToAnimate = "Our AI-powered browser extension helps you curate information by detecting outdated, biased, or false content in real-time. Browse the web with confidence, knowing AIcurate has your back.";
+const textToAnimate = "Our AI-powered browser extension helps you verify information by detecting outdated, biased, or false content in real-time. Browse the web with confidence, knowing AIcurate has your back.";
 const animationDelayStep = 0.3; // seconds per word
 
 // Fisher-Yates (Knuth) Shuffle algorithm
@@ -42,7 +42,7 @@ export default function HeroSection() {
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight">
-              Curate Information <span className="text-primary">Instantly</span> with AIcurate
+              Verify Information <span className="text-primary">Instantly</span> with AIcurate
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl lg:text-lg xl:text-xl">
               {animatedWords ? (
@@ -73,8 +73,15 @@ export default function HeroSection() {
           </div>
           
           <div className="relative flex justify-center items-center h-full">
+             {/* Animated elements container */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <svg width="280" height="100" viewBox="0 0 280 100" className="opacity-30">
+                <circle cx="140" cy="50" r="48" fill="none" stroke="hsl(var(--primary))" strokeWidth="1.5" strokeDasharray="4 8" className="animate-spin-slow" />
+                <circle cx="140" cy="50" r="135" fill="none" stroke="hsl(var(--accent))" strokeWidth="1" strokeDasharray="2 10" className="animate-spin-very-slow" />
+              </svg>
+            </div>
             <Image
-              src="/photos/aicuratelogo.png" // Using the full logo image
+              src="/photos/aicuratelogo.png" 
               alt="AIcurate Logo"
               width={240} 
               height={56}  

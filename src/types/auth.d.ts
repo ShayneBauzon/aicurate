@@ -1,16 +1,8 @@
-// src/types/auth.d.ts
-export interface User {
-  id: string;
-  fullName: string;
-  email: string;
-  hashedPassword?: string; // Optional because we might not always send it to client
-  twoFactorCode: string | null;
-  twoFactorCodeExpiry: Date | null;
-}
+// This file was part of a more complex authentication system that has been removed.
+// It is intentionally left empty to resolve build errors.
+// For a full cleanup, this file should be deleted from your project.
 
-export interface JWTPayload {
-  userId: string;
-  is2FAVerified: boolean;
-  iat?: number;
-  exp?: number;
-}
+// You can declare empty interfaces if other parts of your simplified code still expect these types,
+// though ideally, references to them would also be removed.
+// export interface User {}
+// export interface JWTPayload {}

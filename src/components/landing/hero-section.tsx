@@ -23,13 +23,15 @@ export default function HeroSection() {
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl lg:text-lg xl:text-xl">
               {words.map((word, index) => (
-                <span
-                  key={index}
-                  className="word-to-highlight"
-                  style={{ animationDelay: `${index * animationDelayStep}s` }}
-                >
-                  {word}{' '}
-                </span>
+                <React.Fragment key={index}>
+                  <span
+                    className="word-to-highlight"
+                    style={{ animationDelay: `${index * animationDelayStep}s` }}
+                  >
+                    {word}
+                  </span>
+                  {index < words.length - 1 && ' '}
+                </React.Fragment>
               ))}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

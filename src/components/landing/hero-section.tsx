@@ -26,12 +26,12 @@ export default function HeroSection() {
           </div>
           <div className="flex justify-center items-center group">
             <Image
-              src="/photos/aicurate.png"
+              src="/photos/aicuratelogo.png"
               alt="AIcurate Logo"
-              width={300} // Adjust width as needed
-              height={300} // Adjust height as needed
+              width={240} 
+              height={56} 
               className="transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              priority // Good to add for LCP elements
+              priority 
             />
           </div>
         </div>

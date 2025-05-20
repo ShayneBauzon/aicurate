@@ -26,9 +26,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-6">
-        <Link href="/main" className="flex items-center gap-2 mr-6"> 
-          <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
-          <span className="text-xl font-bold text-primary">AIcurate</span>
+        <Link href="/main" className="flex items-center mr-6 hover:opacity-80 transition-opacity"> 
+          <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
         </Link>
         
         <nav className="hidden md:flex gap-6 items-center">
@@ -60,9 +59,8 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="grid gap-4 py-6">
-                <Link href="/main" className="flex items-center gap-2 mb-4"> 
-                  <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
-                  <span className="text-xl font-bold text-primary">AIcurate</span>
+                <Link href="/main" className="flex items-center mb-4 hover:opacity-80 transition-opacity"> 
+                  <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
                 </Link>
                 {navItems.map((item) => (
                   <Link

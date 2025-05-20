@@ -110,8 +110,7 @@ export default function DownloadPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-3">
             <Link href="/main" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
-                <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
-                <span className="text-xl font-bold text-primary">AIcurate Home</span>
+                <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
             </Link>
           </div>
         </div>
@@ -120,7 +119,7 @@ export default function DownloadPage() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center">
-            <Image src="/photos/aicurate.png" alt="AIcurate Extension Logo" width={64} height={64} className="w-16 h-16 mr-4 rounded-md" />
+            <Image src="/photos/aicuratelogo.png" alt="AIcurate Extension Logo" width={128} height={32} className="mr-4" />
             <div className="flex-grow mt-4 sm:mt-0">
               <h1 className="text-3xl font-bold text-slate-800">AIcurate</h1>
               <p className="text-sm text-slate-500 mt-1">Offered by: AIcurate Team</p>

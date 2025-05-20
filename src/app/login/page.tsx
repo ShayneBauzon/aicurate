@@ -42,8 +42,6 @@ export default function LoginPage() {
     }
 
     setIsLoading(true);
-    // Simulate API call / processing time
-    // Adjusted delay for a smoother perceived transition with the new animation
     await new Promise(resolve => setTimeout(resolve, 800)); 
 
     toast({
@@ -59,19 +57,18 @@ export default function LoginPage() {
         <Link 
           href="/" 
           className={cn(
-            "flex items-center gap-2 text-primary hover:opacity-80 transition-opacity",
+            "flex items-center hover:opacity-80 transition-opacity",
             isLoading ? 'pointer-events-none opacity-50' : ''
           )}
           aria-disabled={isLoading}
           tabIndex={isLoading ? -1 : undefined}
         >
-          <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
-          <span className="text-xl font-bold">AIcurate</span>
+          <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
         </Link>
       </div>
       <Card className={cn(
           "w-full max-w-md shadow-2xl rounded-xl",
-          isLoading ? "login-card-smooth-exit" : "" // Updated animation class
+          isLoading ? "login-card-smooth-exit" : ""
         )}>
         <CardHeader className="text-center space-y-2 pt-8">
           <CardTitle className="text-3xl font-bold text-foreground">

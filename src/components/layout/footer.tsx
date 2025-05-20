@@ -11,9 +11,8 @@ export default function Footer() {
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
-              <span className="text-xl font-bold text-primary">AIcurate</span>
+            <Link href="/" className="flex items-center mb-4 hover:opacity-80 transition-opacity">
+              <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
             </Link>
             <p className="text-sm text-muted-foreground">
               Empowering you with trustworthy information, in real-time.

@@ -53,7 +53,6 @@ export default function RegisterPage() {
     }
     
     setIsLoading(true);
-    // Simulate API call / processing time
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     toast({
@@ -67,9 +66,8 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-secondary/20 p-4">
       <div className="absolute top-8 left-8">
-        <Link href="/" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
-          <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
-          <span className="text-xl font-bold">AIcurate</span>
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
         </Link>
       </div>
       <Card className="w-full max-w-md shadow-2xl rounded-xl">

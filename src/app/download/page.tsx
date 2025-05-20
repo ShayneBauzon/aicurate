@@ -294,11 +294,11 @@ export default function DownloadPage() {
                 </DialogTitle>
                 <DialogDescription className="pt-2">
                   To provide its features, AIcurate needs permission to:
-                  <ul className="list-disc pl-5 mt-2 text-sm text-slate-600 space-y-1">
-                    <li>Read and change data on websites you visit</li>
-                    <li>Display notifications</li>
-                  </ul>
                 </DialogDescription>
+                <ul className="list-disc pl-5 mt-2 text-sm text-slate-600 space-y-1 text-left sm:text-left">
+                  <li>Read and change data on websites you visit</li>
+                  <li>Display notifications</li>
+                </ul>
               </DialogHeader>
               <DialogFooter className="sm:justify-between mt-4">
                 <Button variant="outline" onClick={resetInstallFlow} className="sm:mr-auto">

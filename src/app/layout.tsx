@@ -1,8 +1,9 @@
+
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google'; // Using Inter as a common clean sans-serif
 import './globals.css';
 import { cn } from '@/lib/utils';
-import { Toaster } from "@/components/ui/toaster"; // Added for potential future use, not strictly for current AI display
+import { Toaster } from "@/components/ui/toaster"; 
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -11,7 +12,7 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: 'AIcurate - Real-time Information Verification',
-  description: 'AIcurate is an AI-powered browser extension that helps you verify information by detecting outdated, biased, or false content in real time.',
+  description: 'AIcurate helps you verify information by detecting outdated, biased, or false content in real time.',
 };
 
 export default function RootLayout({
@@ -21,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/photos/aicuratelogo.png" type="image/png" />
+      </head>
       <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         {children}
         <Toaster />

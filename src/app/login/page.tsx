@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { ShieldCheck, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -50,7 +51,10 @@ export default function LoginPage() {
     router.push('/main'); 
     // In a real app, you might not want to setIsLoading(false) if redirecting immediately
     // but for a demo, it ensures the button re-enables if something goes wrong with redirection.
-    setIsLoading(false); 
+    // For this specific case, with the fade-out animation, the component will be "gone"
+    // so resetting isLoading might not be strictly necessary unless the redirect fails.
+    // We'll leave it commented for now, as the component instance might unmount.
+    // setIsLoading(false); 
   };
 
   return (
@@ -61,7 +65,10 @@ export default function LoginPage() {
           <span className="text-xl font-bold">AIcurate</span>
         </Link>
       </div>
-      <Card className="w-full max-w-md shadow-2xl rounded-xl">
+      <Card className={cn(
+          "w-full max-w-md shadow-2xl rounded-xl",
+          isLoading ? "login-card-fade-out" : ""
+        )}>
         <CardHeader className="text-center space-y-2 pt-8">
           <CardTitle className="text-3xl font-bold text-foreground">
             Login to AIcurate

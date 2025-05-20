@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-import { Progress } from '@/components/ui/progress'; // Though not used in final, good to have if we want progress bar
+// import { Progress } from '@/components/ui/progress'; // Though not used in final, good to have if we want progress bar
 import { ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare, PackagePlus, AlertTriangle, Loader2 } from 'lucide-react';
 
 const AicurateLogo = () => (
@@ -82,6 +82,12 @@ const reviews = [
 ];
 
 type InstallStep = 'idle' | 'confirming' | 'installing' | 'installed' | 'error';
+
+// export const metadata: Metadata = {
+//   title: 'Download AIcurate Extension - Chrome Web Store',
+//   description: 'Install the AIcurate browser extension to curate information by detecting outdated, biased, or false content in real-time.',
+// };
+
 
 export default function DownloadPage() {
   const [currentDate, setCurrentDate] = React.useState<string | null>(null);

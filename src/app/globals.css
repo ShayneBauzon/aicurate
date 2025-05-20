@@ -113,22 +113,23 @@
     animation: login-card-smooth-exit-animation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  .animate-text-scan {
+  .animate-hacker-glitch {
+    display: inline-block; /* Ensures background-clip works well */
     background-image: linear-gradient(
       90deg,
-      hsl(var(--foreground)) 0%, 
-      hsl(var(--foreground)) 30%,
-      hsl(var(--accent)) 45%,      
-      hsl(var(--accent)) 55%,      
-      hsl(var(--foreground)) 70%, 
-      hsl(var(--foreground)) 100%
+      hsla(var(--foreground), 0.8) 0%,
+      hsla(var(--foreground), 0.8) 49.7%,
+      hsl(var(--accent)) 49.9%,  /* Sharp accent highlight */
+      hsl(var(--accent)) 50.1%,
+      hsla(var(--foreground), 0.8) 50.3%,
+      hsla(var(--foreground), 0.8) 100%
     );
-    background-size: 300% auto; 
+    background-size: 400% auto; /* Large size for movement */
     background-clip: text;
     -webkit-background-clip: text;
-    color: transparent; 
+    color: transparent;
     -webkit-text-fill-color: transparent;
-    animation: text-scan-animation 4s linear infinite; /* Updated duration */
+    animation: hacker-text-glitch-effect 3s steps(10, end) infinite alternate;
   }
 }
 
@@ -143,26 +144,28 @@
   }
 }
 
-/* Updated keyframes for text scanning animation */
-@keyframes text-scan-animation {
-  0% {
-    background-position: 150% center; /* Highlight is off-screen to the right */
+@keyframes hacker-text-glitch-effect {
+  0%, 100% {
+    background-position: 200% center;
     background-size: 300% auto;
+    opacity: 1;
   }
-  48% { /* Highlight is centered */
-    background-position: -50% center;
-    background-size: 300% auto;
-  }
-  50% { /* Pulse: highlight 'focuses' by slightly shrinking background-size */
-    background-position: -50% center;
-    background-size: 280% auto; 
-  }
-  52% { /* End Pulse: highlight returns to normal width */
-    background-position: -50% center;
-    background-size: 300% auto;
-  }
-  100% {
-    background-position: -250% center; /* Highlight is off-screen to the left */
-    background-size: 300% auto;
-  }
+  5% { background-position: -50% center; background-size: 310% auto; }
+  10% { background-position: 150% center; background-size: 290% auto; }
+  15% { background-position: -20% center; background-size: 305% auto; }
+  20% { background-position: 120% center; background-size: 300% auto; opacity: 0.8; }
+  25% { background-position: 0% center; background-size: 295% auto; }
+  30% { background-position: 100% center; background-size: 310% auto; }
+  35% { background-position: -10% center; background-size: 300% auto; }
+  40% { background-position: 80% center; background-size: 290% auto; opacity: 1; }
+  45% { background-position: 10% center; background-size: 305% auto; }
+  50% { background-position: 60% center; background-size: 300% auto; }
+  55% { background-position: 20% center; background-size: 310% auto; }
+  60% { background-position: 40% center; background-size: 295% auto; opacity: 0.9; }
+  61% { background-position: 45% center; background-size: 290% auto; }
+  62% { background-position: 38% center; background-size: 300% auto; }
+  63% { background-position: 42% center; background-size: 295% auto; }
+  70% { background-position: 180% center; background-size: 300% auto; }
+  80% { background-position: -70% center; background-size: 290% auto; }
+  90% { background-position: 160% center; background-size: 305% auto; opacity: 1; }
 }

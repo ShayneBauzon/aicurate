@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight animate-text-scan">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight animate-hacker-glitch">
               Curate Information <span className="text-primary">Instantly</span> with AIcurate
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl lg:text-lg xl:text-xl">
@@ -25,14 +25,14 @@ export default function HeroSection() {
             </div>
           </div>
           
-          <div className="flex justify-center items-center">
-            {/* Removed SVG animated elements. The div structure is simplified. */}
+          <div className="relative flex justify-center items-center h-full">
+            {/* Main Logo Image */}
             <Image
               src="/photos/aicuratelogo.png"
               alt="AIcurate Logo"
               width={240} 
               height={56}  
-              className="transform hover:scale-105 transition-transform duration-300 ease-in-out"
+              className="relative z-10 transform hover:scale-105 transition-transform duration-300 ease-in-out" // Ensure logo is on top
               priority
             />
           </div>

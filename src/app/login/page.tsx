@@ -42,32 +42,35 @@ export default function LoginPage() {
 
     setIsLoading(true);
     // Simulate API call / processing time
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Adjusted delay for a smoother perceived transition with the new animation
+    await new Promise(resolve => setTimeout(resolve, 800)); 
 
     toast({
       title: "Login Successful!",
       description: "Redirecting to the main page...",
     });
     router.push('/main'); 
-    // In a real app, you might not want to setIsLoading(false) if redirecting immediately
-    // but for a demo, it ensures the button re-enables if something goes wrong with redirection.
-    // For this specific case, with the fade-out animation, the component will be "gone"
-    // so resetting isLoading might not be strictly necessary unless the redirect fails.
-    // We'll leave it commented for now, as the component instance might unmount.
-    // setIsLoading(false); 
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-secondary/20 p-4">
       <div className="absolute top-8 left-8">
-        <Link href="/" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
+        <Link 
+          href="/" 
+          className={cn(
+            "flex items-center gap-2 text-primary hover:opacity-80 transition-opacity",
+            isLoading ? 'pointer-events-none opacity-50' : ''
+          )}
+          aria-disabled={isLoading}
+          tabIndex={isLoading ? -1 : undefined}
+        >
           <ShieldCheck className="h-7 w-7" />
           <span className="text-xl font-bold">AIcurate</span>
         </Link>
       </div>
       <Card className={cn(
           "w-full max-w-md shadow-2xl rounded-xl",
-          isLoading ? "login-card-fade-out" : ""
+          isLoading ? "login-card-smooth-exit" : "" // Updated animation class
         )}>
         <CardHeader className="text-center space-y-2 pt-8">
           <CardTitle className="text-3xl font-bold text-foreground">
@@ -96,7 +99,10 @@ export default function LoginPage() {
                 <Label htmlFor="password" className="text-sm font-medium text-foreground/80">Password</Label>
                 <Link
                   href="#" 
-                  className={`text-xs text-primary hover:underline ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
+                  className={cn(
+                    "text-xs text-primary hover:underline",
+                    isLoading ? 'pointer-events-none opacity-50' : ''
+                  )}
                   aria-disabled={isLoading}
                   tabIndex={isLoading ? -1 : undefined}
                 >
@@ -139,7 +145,10 @@ export default function LoginPage() {
         Don&apos;t have an account?{" "}
         <Link 
           href="/register" 
-          className={`font-semibold text-primary hover:underline ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
+          className={cn(
+            "font-semibold text-primary hover:underline",
+            isLoading ? 'pointer-events-none opacity-50' : ''
+          )}
           aria-disabled={isLoading}
           tabIndex={isLoading ? -1 : undefined}
         >

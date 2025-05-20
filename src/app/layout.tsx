@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/photos/aicuratelogo.png" type="image/png" />
+        {/* The explicit favicon link has been removed. */}
       </head>
       <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         {children}

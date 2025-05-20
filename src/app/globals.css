@@ -113,14 +113,39 @@
     animation: login-card-smooth-exit-animation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  @keyframes login-card-smooth-exit-animation {
-    from {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.95) translateY(-30px);
-    }
+  .animate-rotate-slow-hero {
+    animation: rotate-slow-hero-animation 20s linear infinite;
+  }
+  .animate-rotate-slower-hero {
+    animation: rotate-slower-hero-animation 25s linear infinite;
+  }
+}
+
+@keyframes login-card-smooth-exit-animation {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-30px);
+  }
+}
+
+@keyframes rotate-slow-hero-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-slower-hero-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }

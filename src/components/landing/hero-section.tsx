@@ -24,15 +24,52 @@ export default function HeroSection() {
               </Button>
             </div>
           </div>
-          <div className="flex justify-center items-center group">
-            <Image
-              src="/photos/aicuratelogo.png"
-              alt="AIcurate Logo"
-              width={240} 
-              height={56} 
-              className="transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-              priority 
-            />
+          
+          {/* Updated Logo Area with Animations */}
+          <div className="flex justify-center items-center"> {/* Outer container for alignment */}
+            <div className="relative group w-[280px] h-[100px]"> {/* Container for logo + animations */}
+              {/* Animated Elements - Background */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none" 
+                viewBox="0 0 280 100" 
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" 
+              >
+                <circle
+                  cx="140" 
+                  cy="50"  
+                  r="45"   
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 10" 
+                  strokeLinecap="round"
+                  className="opacity-40 animate-rotate-slow-hero" 
+                />
+                <circle
+                  cx="140"
+                  cy="50"
+                  r="55" 
+                  stroke="hsl(var(--accent))"
+                  strokeWidth="1"
+                  strokeDasharray="8 8"
+                  strokeLinecap="round"
+                  className="opacity-30 animate-rotate-slower-hero" 
+                />
+              </svg>
+
+              {/* Actual Logo Image - Foreground */}
+              <div className="relative z-10 flex justify-center items-center w-full h-full"> {/* Centering div for the image */}
+                <Image
+                  src="/photos/aicuratelogo.png"
+                  alt="AIcurate Logo"
+                  width={240} 
+                  height={56}  
+                  className="transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

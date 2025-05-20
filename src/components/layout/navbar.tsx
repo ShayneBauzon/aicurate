@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, ShieldCheck, LogOut } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast"; // Still useful for toast messages
+import { useToast } from "@/hooks/use-toast";
 
 export default function Navbar() {
   const navItems = [
@@ -18,10 +18,8 @@ export default function Navbar() {
   const { toast } = useToast();
 
   const handleLogout = () => {
-    // For demo, just redirect to login page
     toast({ title: "Logged Out", description: "You have been successfully logged out." });
     router.push('/login');
-    // In a real app with sessions, you'd also clear session state here
   };
 
   return (
@@ -36,14 +34,14 @@ export default function Navbar() {
           {navItems.map((item) => (
             <Link
               key={item.label}
-              href={item.href}
+              href={`/main${item.href}`} // Ensure links work from any page if navbar is reused
               className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
-            <Link href="#cta">Download Now</Link>
+            <Link href="/download">Download Now</Link>
           </Button>
           <Button variant="ghost" size="sm" className="text-foreground/70 hover:text-foreground" onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
@@ -68,14 +66,14 @@ export default function Navbar() {
                 {navItems.map((item) => (
                   <Link
                     key={item.label}
-                    href={item.href}
+                    href={`/main${item.href}`} // Ensure links work from any page
                     className="text-lg font-medium text-foreground hover:text-primary"
                   >
                     {item.label}
                   </Link>
                 ))}
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 mt-4">
-                  <Link href="#cta">Download Now</Link>
+                  <Link href="/download">Download Now</Link>
                 </Button>
                 <Button variant="outline" size="lg" className="mt-2" onClick={handleLogout}>
                    <LogOut className="mr-2 h-5 w-5" />
@@ -89,3 +87,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+    

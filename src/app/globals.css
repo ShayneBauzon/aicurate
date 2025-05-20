@@ -116,19 +116,19 @@
   .animate-text-scan {
     background-image: linear-gradient(
       90deg,
-      hsl(var(--foreground)) 0%, /* Start with normal text color */
+      hsl(var(--foreground)) 0%, 
       hsl(var(--foreground)) 30%,
-      hsl(var(--accent)) 45%,      /* Transition to accent for highlight */
-      hsl(var(--accent)) 55%,      /* Accent highlight band */
-      hsl(var(--foreground)) 70%, /* Transition back to normal text color */
+      hsl(var(--accent)) 45%,      
+      hsl(var(--accent)) 55%,      
+      hsl(var(--foreground)) 70%, 
       hsl(var(--foreground)) 100%
     );
-    background-size: 300% auto; /* Make the gradient wider than the text for smooth transition */
+    background-size: 300% auto; 
     background-clip: text;
     -webkit-background-clip: text;
-    color: transparent; /* Makes the original text color transparent so gradient shows */
+    color: transparent; 
     -webkit-text-fill-color: transparent;
-    animation: text-scan-animation 6s linear infinite;
+    animation: text-scan-animation 4s linear infinite; /* Updated duration */
   }
 }
 
@@ -143,13 +143,26 @@
   }
 }
 
-/* Removed hero logo rotation keyframes */
-
+/* Updated keyframes for text scanning animation */
 @keyframes text-scan-animation {
   0% {
-    background-position: 200% center; /* Start gradient off-screen to the right */
+    background-position: 150% center; /* Highlight is off-screen to the right */
+    background-size: 300% auto;
+  }
+  48% { /* Highlight is centered */
+    background-position: -50% center;
+    background-size: 300% auto;
+  }
+  50% { /* Pulse: highlight 'focuses' by slightly shrinking background-size */
+    background-position: -50% center;
+    background-size: 280% auto; 
+  }
+  52% { /* End Pulse: highlight returns to normal width */
+    background-position: -50% center;
+    background-size: 300% auto;
   }
   100% {
-    background-position: -200% center; /* Move gradient off-screen to the left */
+    background-position: -250% center; /* Highlight is off-screen to the left */
+    background-size: 300% auto;
   }
 }

@@ -9,7 +9,6 @@ import React, { useMemo } from 'react';
 const textToAnimate = "Our AI-powered browser extension helps you curate information by detecting outdated, biased, or false content in real-time. Browse the web with confidence, knowing AIcurate has your back.";
 const wordsInText = textToAnimate.split(' ').length;
 const animationDelayStep = 0.3; // seconds per word
-const totalAnimationDuration = wordsInText * animationDelayStep;
 
 export default function HeroSection() {
   const words = useMemo(() => textToAnimate.split(' '), []);

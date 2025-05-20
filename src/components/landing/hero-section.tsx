@@ -7,11 +7,34 @@ import { Button } from '@/components/ui/button';
 import React, { useMemo } from 'react';
 
 const textToAnimate = "Our AI-powered browser extension helps you curate information by detecting outdated, biased, or false content in real-time. Browse the web with confidence, knowing AIcurate has your back.";
-const wordsInText = textToAnimate.split(' ').length;
 const animationDelayStep = 0.3; // seconds per word
 
+// Fisher-Yates (Knuth) Shuffle algorithm
+function shuffleArray<T>(array: T[]): T[] {
+  const newArray = [...array]; // Create a copy
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; // Swap elements
+  }
+  return newArray;
+}
+
 export default function HeroSection() {
-  const words = useMemo(() => textToAnimate.split(' '), []);
+  const animatedWords = useMemo(() => {
+    const originalWords = textToAnimate.split(' ');
+    const numberOfWords = originalWords.length;
+    
+    // Create an array of indices [0, 1, ..., numberOfWords - 1]
+    const delayIndices = Array.from({ length: numberOfWords }, (_, i) => i);
+    // Shuffle these indices to randomize the animation order
+    const shuffledDelayIndices = shuffleArray(delayIndices);
+
+    return originalWords.map((word, index) => ({
+      text: word,
+      // Assign delay based on the word's position in the shuffled sequence
+      delay: `${shuffledDelayIndices[index] * animationDelayStep}s`,
+    }));
+  }, []); // Empty dependency array ensures this runs once on mount
 
   return (
     <section id="hero" className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-br from-background to-secondary/30">
@@ -22,15 +45,15 @@ export default function HeroSection() {
               Curate Information <span className="text-primary">Instantly</span> with AIcurate
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl lg:text-lg xl:text-xl">
-              {words.map((word, index) => (
+              {animatedWords.map((wordObj, index) => (
                 <React.Fragment key={index}>
                   <span
                     className="word-to-highlight"
-                    style={{ animationDelay: `${index * animationDelayStep}s` }}
+                    style={{ animationDelay: wordObj.delay }}
                   >
-                    {word}
+                    {wordObj.text}
                   </span>
-                  {index < words.length - 1 && ' '}
+                  {index < animatedWords.length - 1 && ' '}
                 </React.Fragment>
               ))}
             </p>

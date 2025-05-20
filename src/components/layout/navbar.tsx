@@ -2,10 +2,11 @@
 'use client'; 
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, ShieldCheck, LogOut } from 'lucide-react';
+import { Menu, LogOut } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 export default function Navbar() {
@@ -26,7 +27,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-6">
         <Link href="/main" className="flex items-center gap-2 mr-6"> 
-          <ShieldCheck className="h-7 w-7 text-primary" />
+          <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
           <span className="text-xl font-bold text-primary">AIcurate</span>
         </Link>
         
@@ -60,7 +61,7 @@ export default function Navbar() {
             <SheetContent side="right">
               <div className="grid gap-4 py-6">
                 <Link href="/main" className="flex items-center gap-2 mb-4"> 
-                  <ShieldCheck className="h-7 w-7 text-primary" />
+                  <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
                   <span className="text-xl font-bold text-primary">AIcurate</span>
                 </Link>
                 {navItems.map((item) => (
@@ -87,5 +88,3 @@ export default function Navbar() {
     </header>
   );
 }
-
-    

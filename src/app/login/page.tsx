@@ -2,6 +2,7 @@
 'use client'; 
 
 import { useState } from "react";
+import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { ShieldCheck, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -64,7 +65,7 @@ export default function LoginPage() {
           aria-disabled={isLoading}
           tabIndex={isLoading ? -1 : undefined}
         >
-          <ShieldCheck className="h-7 w-7" />
+          <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
           <span className="text-xl font-bold">AIcurate</span>
         </Link>
       </div>

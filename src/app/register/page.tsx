@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from "react";
+import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { ShieldCheck, UserPlus, Loader2 } from "lucide-react";
+import { UserPlus, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -67,7 +68,7 @@ export default function RegisterPage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-secondary/20 p-4">
       <div className="absolute top-8 left-8">
         <Link href="/" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
-          <ShieldCheck className="h-7 w-7" />
+          <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
           <span className="text-xl font-bold">AIcurate</span>
         </Link>
       </div>

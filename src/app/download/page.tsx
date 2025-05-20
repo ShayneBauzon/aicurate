@@ -7,39 +7,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-// import { Progress } from '@/components/ui/progress'; // Though not used in final, good to have if we want progress bar
 import { ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare, PackagePlus, AlertTriangle, Loader2 } from 'lucide-react';
-
-const AicurateLogo = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-    className="w-16 h-16 mr-4"
-    aria-labelledby="aicurateLogoDownloadPageTitle"
-  >
-    <title id="aicurateLogoDownloadPageTitle">AIcurate Logo</title>
-    <path
-      d="M50 5 C 55 5, 90 20, 90 50 C 90 80, 55 95, 50 95 C 45 95, 10 80, 10 50 C 10 20, 45 5, 50 5 Z"
-      fill="hsl(var(--primary))"
-    />
-    <path
-      d="M30 35 L50 65 L70 35"
-      stroke="hsl(var(--primary-foreground))"
-      strokeWidth="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
-    <path
-      d="M52 58 L60 66 L78 42"
-      stroke="hsl(var(--accent))"
-      strokeWidth="8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
-  </svg>
-);
 
 
 const featuresList = [
@@ -142,7 +110,7 @@ export default function DownloadPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-3">
             <Link href="/main" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
-                <ShieldCheck className="h-7 w-7 text-primary" />
+                <Image src="/photos/aicurate.png" alt="AIcurate Logo" width={28} height={28} className="h-7 w-7" />
                 <span className="text-xl font-bold text-primary">AIcurate Home</span>
             </Link>
           </div>
@@ -152,7 +120,7 @@ export default function DownloadPage() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center">
-            <AicurateLogo />
+            <Image src="/photos/aicurate.png" alt="AIcurate Extension Logo" width={64} height={64} className="w-16 h-16 mr-4 rounded-md" />
             <div className="flex-grow mt-4 sm:mt-0">
               <h1 className="text-3xl font-bold text-slate-800">AIcurate</h1>
               <p className="text-sm text-slate-500 mt-1">Offered by: AIcurate Team</p>
@@ -298,7 +266,7 @@ export default function DownloadPage() {
                   <PackagePlus className="w-6 h-6 mr-2 text-blue-600" />
                   Add "AIcurate"?
                 </DialogTitle>
-                <DialogDescription className="pt-2">
+                <DialogDescription className="pt-2 text-left sm:text-left">
                   To provide its features, AIcurate needs permission to:
                 </DialogDescription>
                 <ul className="list-disc pl-5 mt-2 text-sm text-slate-600 space-y-1 text-left sm:text-left">

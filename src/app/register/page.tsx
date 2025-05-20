@@ -23,16 +23,16 @@ const AIcurateLogoIcon = () => (
   <svg aria-label="AIcurate Logo Icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <title id="aicuratelogoiconregister">AIcurate Logo Icon</title>
     <path d="M16 2C16 2 6 5.33333 6 16C6 26.6667 16 30 16 30C16 30 26 26.6667 26 16C26 5.33333 16 2 16 2Z" fill="hsl(var(--primary))"/>
-    {/* Replaced checkmark with "AC" */}
-    <text 
-      x="16" 
-      y="17.5" 
-      dominantBaseline="middle" 
-      textAnchor="middle" 
-      fontFamily="Arial, sans-serif" 
-      fontSize="13" 
-      fontWeight="bold" 
+    <text
+      x="16"
+      y="17.5"
+      dominantBaseline="middle"
+      textAnchor="middle"
+      fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
+      fontSize="14"
+      fontWeight="600"
       fill="hsl(var(--primary-foreground))"
+      letterSpacing="-0.5"
     >
       AC
     </text>

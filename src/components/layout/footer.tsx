@@ -1,8 +1,6 @@
 
 import Link from 'next/link';
-import Image from 'next/image'; // Import next/image
-
-// AIcurateLogoIcon is no longer needed here if we use the image directly
+import Image from 'next/image'; 
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,9 +14,9 @@ export default function Footer() {
               <Image
                 src="/photos/aicuratelogo.png" 
                 alt="AIcurate Logo"
-                width={160} // Increased width
-                height={40} // Increased height
-                className="h-10 w-auto" // Adjusted class for new height
+                width={240} // Using the intrinsic width for aspect ratio
+                height={56} // Using the intrinsic height for aspect ratio
+                className="h-16 w-auto" // Increased height for larger rendering
               />
             </Link>
             <p className="text-sm text-muted-foreground">

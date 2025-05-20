@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-import { ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare, PackagePlus, AlertTriangle, Loader2 } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Star, Info, CheckCircle, Users, MessageSquare, PackagePlus, AlertTriangle, Loader2 } from 'lucide-react';
 
 
 const featuresList = [
@@ -76,11 +76,8 @@ export default function DownloadPage() {
 
   const handleConfirmInstall = () => {
     setInstallStep('installing');
-    // Simulate installation process
     setTimeout(() => {
-      // Simulate a chance of error for demo
-      // const success = Math.random() > 0.2; 
-      const success = true; // For now, always success
+      const success = true; 
       if (success) {
         setInstallStep('installed');
         setMainButtonText('Added to Chrome');
@@ -88,7 +85,7 @@ export default function DownloadPage() {
       } else {
         setInstallStep('error');
       }
-    }, 2500); // Simulate 2.5 seconds installation time
+    }, 2500); 
   };
 
   const handleCloseDialog = () => {
@@ -109,9 +106,12 @@ export default function DownloadPage() {
       <header className="bg-white border-b border-slate-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-3">
-            <Link href="/main" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
-                <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
-            </Link>
+            <Button asChild variant="ghost" className="text-primary hover:bg-primary/10">
+              <Link href="/main">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to AIcurate Home
+              </Link>
+            </Button>
           </div>
         </div>
       </header>
@@ -119,7 +119,8 @@ export default function DownloadPage() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center">
-            <Image src="/photos/aicuratelogo.png" alt="AIcurate Extension Logo" width={128} height={32} className="mr-4" />
+            {/* Using the aicuratelogo.png for the extension representation */}
+            <Image src="/photos/aicuratelogo.png" alt="AIcurate Extension Logo" width={128} height={32} className="mr-4 rounded" />
             <div className="flex-grow mt-4 sm:mt-0">
               <h1 className="text-3xl font-bold text-slate-800">AIcurate</h1>
               <p className="text-sm text-slate-500 mt-1">Offered by: AIcurate Team</p>

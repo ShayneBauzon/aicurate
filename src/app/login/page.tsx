@@ -2,7 +2,7 @@
 'use client'; 
 
 import { useState } from "react";
-import Image from 'next/image';
+// import Image from 'next/image'; // No longer using Image for logo here
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +19,14 @@ import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+
+const AIcurateLogoIcon = () => (
+  <svg aria-label="AIcurate Logo" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title id="aicuratelogoiconlogin">AIcurate Logo Icon</title>
+    <path d="M16 2C16 2 6 5.33333 6 16C6 26.6667 16 30 16 30C16 30 26 26.6667 26 16C26 5.33333 16 2 16 2Z" fill="hsl(var(--primary))"/>
+    <path d="M11 16L14.5 19.5L21 12.5" stroke="hsl(var(--primary-foreground))" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -49,6 +57,7 @@ export default function LoginPage() {
       description: "Redirecting to the main page...",
     });
     router.push('/main'); 
+    // setIsLoading(false); // This line is not strictly necessary as the page will redirect
   };
 
   return (
@@ -57,13 +66,15 @@ export default function LoginPage() {
         <Link 
           href="/" 
           className={cn(
-            "flex items-center hover:opacity-80 transition-opacity",
+            "flex items-center gap-2 hover:opacity-80 transition-opacity",
             isLoading ? 'pointer-events-none opacity-50' : ''
           )}
           aria-disabled={isLoading}
           tabIndex={isLoading ? -1 : undefined}
+          aria-label="AIcurate Homepage"
         >
-          <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
+          <AIcurateLogoIcon />
+          <span className="font-semibold text-lg text-foreground">AIcurate</span>
         </Link>
       </div>
       <Card className={cn(

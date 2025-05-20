@@ -2,12 +2,20 @@
 'use client'; 
 
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image'; // No longer using Image for logo here
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, LogOut } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+
+const AIcurateLogoIcon = () => (
+  <svg aria-label="AIcurate Logo" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title id="aicuratelogoicon">AIcurate Logo Icon</title>
+    <path d="M16 2C16 2 6 5.33333 6 16C6 26.6667 16 30 16 30C16 30 26 26.6667 26 16C26 5.33333 16 2 16 2Z" fill="hsl(var(--primary))"/>
+    <path d="M11 16L14.5 19.5L21 12.5" stroke="hsl(var(--primary-foreground))" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 export default function Navbar() {
   const navItems = [
@@ -26,15 +34,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-6">
-        <Link href="/main" className="flex items-center mr-6 hover:opacity-80 transition-opacity"> 
-          <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
+        <Link href="/main" className="flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="AIcurate Homepage"> 
+          <AIcurateLogoIcon />
+          <span className="font-semibold text-lg text-foreground">AIcurate</span>
         </Link>
         
         <nav className="hidden md:flex gap-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.label}
-              href={`/main${item.href}`} // Ensure links work from any page if navbar is reused
+              href={`/main${item.href}`} 
               className="text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
             >
               {item.label}
@@ -59,13 +68,14 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="grid gap-4 py-6">
-                <Link href="/main" className="flex items-center mb-4 hover:opacity-80 transition-opacity"> 
-                  <Image src="/photos/aicuratelogo.png" alt="AIcurate Logo" width={128} height={32} />
+                <Link href="/main" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity" aria-label="AIcurate Homepage"> 
+                  <AIcurateLogoIcon />
+                  <span className="font-semibold text-lg text-foreground">AIcurate</span>
                 </Link>
                 {navItems.map((item) => (
                   <Link
                     key={item.label}
-                    href={`/main${item.href}`} // Ensure links work from any page
+                    href={`/main${item.href}`} 
                     className="text-lg font-medium text-foreground hover:text-primary"
                   >
                     {item.label}

@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-center">
           <div className="flex flex-col justify-center space-y-6">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-tight animate-text-scan">
               Curate Information <span className="text-primary">Instantly</span> with AIcurate
             </h1>
             <p className="max-w-[600px] text-muted-foreground md:text-xl lg:text-lg xl:text-xl">
@@ -26,49 +26,15 @@ export default function HeroSection() {
           </div>
           
           <div className="flex justify-center items-center">
-            <div className="relative group w-[280px] h-[100px]">
-              {/* Animated Elements - Surrounding the logo */}
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none" 
-                viewBox="0 0 280 100" 
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true" 
-              >
-                <circle
-                  cx="140" 
-                  cy="50"  
-                  r="48"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="1.5"
-                  strokeDasharray="5 10" 
-                  strokeLinecap="round"
-                  className="opacity-40 animate-rotate-slow-hero" 
-                />
-                <circle
-                  cx="140"
-                  cy="50"
-                  r="135"
-                  stroke="hsl(var(--accent))"
-                  strokeWidth="1"
-                  strokeDasharray="8 8"
-                  strokeLinecap="round"
-                  className="opacity-30 animate-rotate-slower-hero" 
-                />
-              </svg>
-
-              {/* Actual Logo Image - Foreground */}
-              <div className="relative z-10 flex justify-center items-center w-full h-full">
-                <Image
-                  src="/photos/aicuratelogo.png"
-                  alt="AIcurate Logo"
-                  width={240} 
-                  height={56}  
-                  className="transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
-                  priority
-                />
-              </div>
-            </div>
+            {/* Removed SVG animated elements. The div structure is simplified. */}
+            <Image
+              src="/photos/aicuratelogo.png"
+              alt="AIcurate Logo"
+              width={240} 
+              height={56}  
+              className="transform hover:scale-105 transition-transform duration-300 ease-in-out"
+              priority
+            />
           </div>
         </div>
       </div>

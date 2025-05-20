@@ -113,11 +113,22 @@
     animation: login-card-smooth-exit-animation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  .animate-rotate-slow-hero {
-    animation: rotate-slow-hero-animation 20s linear infinite;
-  }
-  .animate-rotate-slower-hero {
-    animation: rotate-slower-hero-animation 25s linear infinite;
+  .animate-text-scan {
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--foreground)) 0%, /* Start with normal text color */
+      hsl(var(--foreground)) 30%,
+      hsl(var(--accent)) 45%,      /* Transition to accent for highlight */
+      hsl(var(--accent)) 55%,      /* Accent highlight band */
+      hsl(var(--foreground)) 70%, /* Transition back to normal text color */
+      hsl(var(--foreground)) 100%
+    );
+    background-size: 300% auto; /* Make the gradient wider than the text for smooth transition */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent; /* Makes the original text color transparent so gradient shows */
+    -webkit-text-fill-color: transparent;
+    animation: text-scan-animation 6s linear infinite;
   }
 }
 
@@ -132,20 +143,13 @@
   }
 }
 
-@keyframes rotate-slow-hero-animation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* Removed hero logo rotation keyframes */
 
-@keyframes rotate-slower-hero-animation {
-  from {
-    transform: rotate(0deg);
+@keyframes text-scan-animation {
+  0% {
+    background-position: 200% center; /* Start gradient off-screen to the right */
   }
-  to {
-    transform: rotate(-360deg);
+  100% {
+    background-position: -200% center; /* Move gradient off-screen to the left */
   }
 }

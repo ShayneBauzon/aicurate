@@ -340,5 +340,3 @@ Please ensure your code follows the existing style and conventions.
 *   **Accessibility (A11y) Enhancements:** Further review and improvements for accessibility.
 
 ---
-
-This guide should provide a solid structure for the AIcurate demo and project understanding!
